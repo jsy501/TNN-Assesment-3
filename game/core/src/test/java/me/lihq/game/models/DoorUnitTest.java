@@ -1,8 +1,6 @@
 package me.lihq.game.models;
 
 import me.lihq.game.GameTester;
-import me.lihq.game.models.Door;
-import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 import org.junit.After;
 import org.junit.Before;
