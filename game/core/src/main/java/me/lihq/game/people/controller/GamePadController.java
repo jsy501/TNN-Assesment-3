@@ -49,7 +49,7 @@ public class GamePadController implements ControllerListener {
 
     public void connected(Controller controller) {
         controllerConnected = true;
-        //// TODO: 31/01/2017 add a gui element to display when controller connects and disconects
+        //// TODO: 31/01/2017 add a guiOne element to display when controller connects and disconects
     }
 
     public void disconnected(Controller controller) {

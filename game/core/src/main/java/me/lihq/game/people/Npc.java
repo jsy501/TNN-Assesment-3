@@ -62,6 +62,11 @@ public class Npc extends AbstractPerson {
      */
     @Override
     public void act(float delta) {
+        //move character and reset vector distance
+        moveBy(vectorDistanceX, vectorDistanceY);
+        vectorDistanceX = 0;
+        vectorDistanceY = 0;
+
         if (isCanMove()) {
             randomTimeSum += delta;
             if (randomTimeLimit <= randomTimeSum) {

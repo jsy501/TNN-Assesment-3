@@ -3,16 +3,14 @@ package me.lihq.game.screen.elements;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.Time;
-import me.lihq.game.models.Score;
-import me.lihq.game.screen.NavigationScreen;
-import me.lihq.game.screen.PlayerSelectionScreen;
+import me.lihq.game.GameWorld;
+import me.lihq.game.Score;
+import me.lihq.game.screen.SinglePlayerSelectionScreen;
 
 /**
  * NEW
@@ -26,37 +24,36 @@ public class GameClearMenu extends MenuTable{
      *
      * @param game  - The game object the menu is being loaded for
      */
-    public GameClearMenu(GameMain game) {
-        super(game, "GAME CLEAR!");
+    public GameClearMenu(GameMain game, GameWorld gameWorld) {
+        super(game.assetLoader.menuSkin, "GAME CLEAR!");
 
-        TextButton retry = new TextButton("Retry", menuSkin);
+        TextButton mainMenu = new TextButton("Main Menu", menuSkin);
 
         TextButton quit = new TextButton("Quit", menuSkin);
 
-        int totalTime = (int) Time.getInstance().getTime();
+        int totalTime = (int) gameWorld.getTime().getTotalTime();
 
         //convert seconds into minutes and seconds
         String timeString = String.valueOf(totalTime/60) + ":" + String.valueOf(totalTime%60);
 
-        int totalScore = Score.getInstance().getFinalScore(totalTime);
+        int totalScore = gameWorld.getScore().getFinalScore(totalTime);
         Label timeLabel = new Label("Time taken: " + timeString, menuSkin, "default", Color.WHITE);
         Label scoreLabel = new Label("Score: " + totalScore, menuSkin, "default", Color.WHITE);
         Label highScoreLabel = new Label("New Highscore!", menuSkin, "default", Color.RED);
 
         contentTable.add(timeLabel).row();
         contentTable.add(scoreLabel).row();
-        if (Score.getInstance().isHighScore(totalScore)) {
+        if (gameWorld.getScore().isHighScore(totalScore)) {
             contentTable.add(highScoreLabel).row();
         }
 
-        addButton(retry);
+        addButton(mainMenu);
         addButton(quit);
 
-        retry.addListener(new ChangeListener() {
+        mainMenu.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                game.playerSelectionScreen = new PlayerSelectionScreen(game);
-                game.setScreen(game.playerSelectionScreen);
+                game.setScreen(game.mainMenuScreen);
             }
         });
 

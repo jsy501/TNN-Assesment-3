@@ -6,33 +6,32 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-
 import me.lihq.game.AssetLoader;
 import me.lihq.game.GameMain;
 import me.lihq.game.gui.Slot;
 import me.lihq.game.people.Player;
 
-/**
- * NEW
- * Screen that users pick their detectives.
- */
-
-public class PlayerSelectionScreen extends AbstractScreen {
+public class TwoPlayerSelectionScreen extends AbstractScreen{
     private Array<Player> playerArray;
 
     private Stage stage;
 
+    private Table table;
+    private Label selectionLabel;
     private Table selectionTable;
     private Dialog selectionConfirmWindow;
 
-    private Player selectedPlayer;
+    private Slot selectedPlayerSlot;
+    private Player playerOne;
+    private Player playerTwo;
 
-    public PlayerSelectionScreen(GameMain game) {
+    public TwoPlayerSelectionScreen(GameMain game) {
         super(game);
 
         AssetLoader assetLoader = game.assetLoader;
@@ -47,15 +46,27 @@ public class PlayerSelectionScreen extends AbstractScreen {
 
         stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
 
+        table = new Table();
+        table.setFillParent(true);
+
+        selectionLabel = new Label("Choose detective for Player 1!", assetLoader.uiSkin, "title");
+
         selectionTable = new Table();
-        selectionTable.setFillParent(true);
 
         selectionConfirmWindow = new Dialog("", game.assetLoader.uiSkin){
             @Override
             protected void result(Object object) {
                 if (object.equals(true)){
-                    game.navigationScreen = new NavigationScreen(game, selectedPlayer);
-                    game.setScreen(game.navigationScreen);
+                    if (playerOne == null){
+                        playerOne = (Player) selectedPlayerSlot.getSlotActor();
+                        selectionLabel.setText("Choose detective for Player 2!");
+                        selectedPlayerSlot.remove();
+                    }
+                    else{
+                        playerTwo = (Player) selectedPlayerSlot.getSlotActor();
+                        game.twoPlayerGameScreen = new TwoPlayerGameScreen(game, playerOne, playerTwo);
+                        game.setScreen(game.twoPlayerGameScreen);
+                    }
                 }
                 else {
                     hide();
@@ -89,7 +100,7 @@ public class PlayerSelectionScreen extends AbstractScreen {
 
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                    selectedPlayer = player;
+                    selectedPlayerSlot = playerSlot;
 
                     selectionConfirmWindow.getContentTable().clear();
                     selectionConfirmWindow.text(player.getDescription());
@@ -100,7 +111,10 @@ public class PlayerSelectionScreen extends AbstractScreen {
             selectionTable.add(playerSlot);
         }
 
-        stage.addActor(selectionTable);
+        table.add(selectionLabel).row();
+        table.add(selectionTable);
+
+        stage.addActor(table);
 
         Gdx.input.setInputProcessor(stage);
     }

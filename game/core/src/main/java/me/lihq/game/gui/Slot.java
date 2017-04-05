@@ -63,6 +63,10 @@ public class Slot extends Button {
         isCursorOver = cursorOver;
     }
 
+    public Actor getSlotActor() {
+        return slotActor;
+    }
+
     /**
      * Actor that renders character image in slot. Only used in slot class
      */

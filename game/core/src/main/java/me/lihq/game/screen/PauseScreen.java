@@ -2,13 +2,12 @@ package me.lihq.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.GameWorld;
 import me.lihq.game.Time;
-import me.lihq.game.screen.elements.MainMenu;
 import me.lihq.game.screen.elements.PauseMenu;
 
 /**
@@ -46,7 +45,10 @@ public class PauseScreen extends AbstractScreen
         stage.addActor(pauseMenu);
         Gdx.input.setInputProcessor(stage);
 
-        Time.getInstance().setPaused(true);
+        game.gameWorldOne.getTime().setPaused(true);
+        if (game.gameWorldTwo != null){
+            game.gameWorldTwo.getTime().setPaused(true);
+        }
     }
 
     /**
@@ -57,10 +59,6 @@ public class PauseScreen extends AbstractScreen
     @Override
     public void render(float delta)
     {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            game.setScreen(game.navigationScreen);
-        }
-
         stage.act();
         stage.draw();
     }

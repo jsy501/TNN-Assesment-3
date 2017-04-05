@@ -23,7 +23,7 @@ public class Player extends AbstractPerson {
     /**
      * Parameters needed for player:
      *
-     * gameWorld - contains a reference to the game world object
+     * gameWorldOne - contains a reference to the game world object
      * dialogue - contains the players dialogue information
      * inventory - This object stores the clues and hints the player has collected and the npc's they have spoken to.
      * personalityLevel - The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
@@ -40,6 +40,8 @@ public class Player extends AbstractPerson {
 
     private Rectangle interactionCollisionBox;
 
+    private Stamina stamina;
+
     /**
      * This is the constructor for player, it creates a new playable person
      *
@@ -55,6 +57,8 @@ public class Player extends AbstractPerson {
         personalityMeter = new PersonalityMeter(jsonData.getInt("personalityLevel"));
         interactionCollisionBox = new Rectangle();
         interactionCollisionBox.setSize(collisionBox.getWidth(), collisionBox.getHeight());
+
+        stamina = new Stamina();
     }
 
     /**
@@ -90,20 +94,23 @@ public class Player extends AbstractPerson {
 
         // if the object colliding with the interaction collision box is an npc, start an interaction
         if (interactingActor instanceof Npc) {
-            gameWorld.startInteraction((Npc) interactingActor);
-            if (!this.inventory.getMetCharacters().contains((Npc)interactingActor, true)) {
-                this.inventory.addCharacter((Npc)interactingActor);
-                System.out.println(this.inventory.getMetCharacters());
+            if (stamina.action()) {
+                gameWorld.startInteraction((Npc) interactingActor);
+                if (!this.inventory.getMetCharacters().contains((Npc) interactingActor, true)) {
+                    this.inventory.addCharacter((Npc) interactingActor);
+                    System.out.println(this.inventory.getMetCharacters());
+                }
+                System.out.println(((Npc) interactingActor).getName());
             }
-            System.out.println(((Npc)interactingActor).getName());
         }
 
         // if it is a clue, add the clue to the inventory
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
-            if (foundClue.isVisible()){
+            if (foundClue.isVisible() && stamina.action()){
                 foundClue.setVisible(false);
                 inventory.addClue(foundClue);
+                gameWorld.getScore().addPoints(100);
 
                 gameWorld.getGui().displayInfo(foundClue.getDescription());
                 System.out.println(((Clue)interactingActor).getName());
@@ -117,7 +124,11 @@ public class Player extends AbstractPerson {
      */
     @Override
     public void act(float delta) {
-        super.act(delta);
+        moveBy(vectorDistanceX, vectorDistanceY);
+        stamina.move(vectorDistanceX, vectorDistanceY);
+        vectorDistanceX = 0;
+        vectorDistanceY = 0;
+
         RoomArrow arrow = roomArrowCollisionDetection(collisionBox);
         if (arrow != null){
             arrow.setVisible(true);
@@ -131,6 +142,7 @@ public class Player extends AbstractPerson {
                 gameWorld.changeRoom(collidingExit.getConnectedRoomId());
             }
         }
+        super.act(delta);
     }
 
     /**
@@ -204,6 +216,10 @@ public class Player extends AbstractPerson {
 
     public PersonalityMeter getPersonalityMeter() {
         return personalityMeter;
+    }
+
+    public Stamina getStamina(){
+        return stamina;
     }
 
     /**

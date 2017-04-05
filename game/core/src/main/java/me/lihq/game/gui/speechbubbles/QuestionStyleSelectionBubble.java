@@ -22,6 +22,8 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
         aggressiveButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                gameWorld.getConversationManager().addSpeechBubble(gameWorld.getPlayer(), gameWorld.getPlayer().
+                        getDialogue().getQuestionDialogue(QuestionStyle.AGGRESSIVE));
                 gameWorld.getInteraction().question(selectedClue, QuestionStyle.AGGRESSIVE);
             }
         });
@@ -30,6 +32,8 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
         neutralButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                gameWorld.getConversationManager().addSpeechBubble(gameWorld.getPlayer(), gameWorld.getPlayer().
+                        getDialogue().getQuestionDialogue(QuestionStyle.NEUTRAL));
                 gameWorld.getInteraction().question(selectedClue, QuestionStyle.NEUTRAL);
             }
         });
@@ -38,6 +42,8 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
         niceButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                gameWorld.getConversationManager().addSpeechBubble(gameWorld.getPlayer(), gameWorld.getPlayer().
+                        getDialogue().getQuestionDialogue(QuestionStyle.NICE));
                 gameWorld.getInteraction().question(selectedClue, QuestionStyle.NICE);
             }
         });

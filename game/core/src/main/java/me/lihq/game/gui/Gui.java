@@ -7,15 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
-import me.lihq.game.Time;
 import me.lihq.game.gui.windows.AccuseWindow;
 import me.lihq.game.gui.windows.InfoWindow;
 import me.lihq.game.gui.windows.InventoryWindow;
@@ -23,7 +23,7 @@ import me.lihq.game.gui.windows.NpcNoteWindow;
 import me.lihq.game.gui.windows.PersonalityMeterWindow;
 import me.lihq.game.gui.windows.ClueSelectionWindow;
 import me.lihq.game.models.Room;
-import me.lihq.game.models.Score;
+import me.lihq.game.Score;
 
 /**
  * NEW
@@ -34,6 +34,7 @@ public class Gui {
     private GameWorld gameWorld;
 
     private RoomTag roomTag;
+    private StaminaBar staminaBar;
     private StatusBar statusBar;
 
     private SpriteBatch guiBatch;
@@ -49,33 +50,47 @@ public class Gui {
     private ClueSelectionWindow clueSelectionWindow;
     private AccuseWindow accuseWindow;
 
-    public Gui(GameMain game, GameWorld gameWorld){
+    public Gui(GameMain game, GameWorld gameWorld, boolean isTwoPlayerMode){
         this.gameWorld = gameWorld;
+
+        guiBatch = new SpriteBatch();
+        guiStage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT), guiBatch);
 
         //table for main game screen gui
         Table table = new Table();
         table.setFillParent(true);
-        table.align(Align.bottom);
 
-        guiBatch = new SpriteBatch();
-        guiStage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT), guiBatch);
+        //table for upper screen ui
+        Table upperTable = new Table();
+        upperTable.align(Align.topRight);
+
+        if (isTwoPlayerMode) {
+            staminaBar = new StaminaBar(game, gameWorld);
+            upperTable.add(staminaBar);
+        }
+
+        //table for lower screen ui
+        Table lowerTable = new Table();
+        lowerTable.align(Align.bottom);
 
         fadeInOut = new FadeInOut();
 
         roomTag = new RoomTag(game.assetLoader.roomTagBorder, game.assetLoader.roomTagFont);
         table.addActor(roomTag);
 
-
         statusBar = new StatusBar(game, this);
-        table.add(statusBar);
+        lowerTable.add(statusBar);
+
+        table.add(upperTable).height(Value.percentHeight(0.5f, table)).fillX().row();
+        table.add(lowerTable).height(Value.percentHeight(0.5f, table)).fillX();
 
         guiStage.addActor(table);
         guiStage.addActor(fadeInOut);
 
 
         // time and score must be added into gui stage for them to be updated
-        guiStage.addActor(Time.getInstance());
-        guiStage.addActor(Score.getInstance());
+        guiStage.addActor(gameWorld.getTime());
+        guiStage.addActor(gameWorld.getScore());
 
 
         //instantiate all of the gui windows altogether
@@ -141,6 +156,8 @@ public class Gui {
     }
 
     public void render(float delta){
+        System.out.println(gameWorld.getTime().getTotalTime());
+
         guiStage.act(delta);
         guiStage.draw();
     }

@@ -66,6 +66,9 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     protected Rectangle collisionBox;
 
+    protected float vectorDistanceX;
+    protected float vectorDistanceY;
+
     protected Direction direction = Direction.SOUTH;
 
     private PersonState state;
@@ -167,12 +170,14 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
             animStateTime += delta;
 
             // the distance the character will move if there is no collision
-            float vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
-            float vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
+            vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
+            vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
             collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
 
-            if (!wallCollisionDetection(collisionBox) && !characterCollisionDetection(collisionBox)) {
-                moveBy(vectorDistanceX, vectorDistanceY);
+            // if there is any collision the distance it will move that frame will be 0
+            if (wallCollisionDetection(collisionBox) || characterCollisionDetection(collisionBox)) {
+                vectorDistanceX = 0;
+                vectorDistanceY = 0;
             }
         } else {
             animStateTime = 0;

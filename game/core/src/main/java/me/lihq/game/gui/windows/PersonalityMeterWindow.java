@@ -22,7 +22,9 @@ public class PersonalityMeterWindow extends GuiWindow {
         super("", skin, gui, gameWorld);
 
         meterBar = new ProgressBar(0, 100, 1, false, skin);
-        getContentTable().add(meterBar).size(GameMain.GAME_WIDTH * 0.5f, 100);
+        getContentTable().add(meterBar).size(GameMain.GAME_WIDTH * 0.5f, 100).colspan(2).row();
+        getContentTable().add("Nice").left();
+        getContentTable().add("Aggressive").right();
         button("OK", true);
     }
 

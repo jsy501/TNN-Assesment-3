@@ -1,12 +1,13 @@
 package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import me.lihq.game.GameMain;
-import me.lihq.game.screen.NavigationScreen;
 
 /**
  * NEW
@@ -20,15 +21,18 @@ public class PauseMenu extends MenuTable{
      * @param game - The game object the menu is being loaded for
      */
     public PauseMenu(GameMain game) {
-        super(game, "PAUSE");
+        super(game.assetLoader.menuSkin, "PAUSE");
 
         TextButton resumeButton = new TextButton("Resume", menuSkin);
+
+        TextButton mainMenu = new TextButton("Main Menu", menuSkin);
 
         TextButton quit = new TextButton("Quit", menuSkin);
 
         //Loading the buttons onto the stage
 
         addButton(resumeButton);
+        addButton(mainMenu);
         addButton(quit);
 
         //Making the "resume" button clickable and causing it to pause the game
@@ -37,7 +41,15 @@ public class PauseMenu extends MenuTable{
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(game.navigationScreen);
+                game.setScreen(game.singlePlayerGameScreen);
+            }
+        });
+
+        //Making the "main menu" button clickable and causing it to return back to the main menu
+        mainMenu.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setScreen(game.mainMenuScreen);
             }
         });
 

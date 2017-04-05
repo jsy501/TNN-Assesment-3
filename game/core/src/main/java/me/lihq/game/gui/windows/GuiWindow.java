@@ -10,7 +10,7 @@ import me.lihq.game.gui.Gui;
 
 /**
  * NEW
- * Basic window used by gui. Interacts with a gui and gameworld.
+ * Basic window used by guiOne. Interacts with a guiOne and gameworld.
  */
 
 abstract class GuiWindow extends Dialog {

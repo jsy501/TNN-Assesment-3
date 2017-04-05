@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.GameWorld;
 import me.lihq.game.screen.elements.GameClearMenu;
 import me.lihq.game.screen.elements.MainMenu;
 
@@ -19,13 +20,13 @@ public class GameClearScreen  extends AbstractScreen{
 
     private GameClearMenu menu;
 
-    public GameClearScreen(GameMain game) {
+    public GameClearScreen(GameMain game, GameWorld gameWorld) {
         super(game);
 
         stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
 
         //Creates a MainMenu object thus creating the main menu
-        menu = new GameClearMenu(game);
+        menu = new GameClearMenu(game, gameWorld);
     }
 
     @Override

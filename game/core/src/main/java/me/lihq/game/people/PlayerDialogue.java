@@ -38,16 +38,18 @@ public class PlayerDialogue extends Dialogue {
     /**
      * Getters for use in other classes
      */
+    public String getQuestionDialogue(QuestionStyle questionStyle){
+        switch (questionStyle){
+            case AGGRESSIVE:
+                return aggressiveQuestionArray.random();
 
-    public Array<String> getNiceQuestionArray() {
-        return niceQuestionArray;
-    }
+            case NEUTRAL:
+                return neutralQuestionArray.random();
 
-    public Array<String> getNeutralQuestionArray() {
-        return neutralQuestionArray;
-    }
+            case NICE:
+                return niceQuestionArray.random();
+        }
 
-    public Array<String> getAggressiveQuestionArray() {
-        return aggressiveQuestionArray;
+        return null;
     }
 }

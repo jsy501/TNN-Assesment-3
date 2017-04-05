@@ -9,7 +9,7 @@ import me.lihq.game.GameMain;
 import me.lihq.game.gui.buttons.InventoryButton;
 import me.lihq.game.gui.buttons.NpcNoteButton;
 import me.lihq.game.gui.buttons.PersonalityMeterButton;
-import me.lihq.game.models.Score;
+import me.lihq.game.Score;
 
 /**
  * EXTENDED
@@ -21,18 +21,19 @@ class StatusBar extends Table
     /**
      * The height of the StatusBar
      */
-    private static final int HEIGHT = 50; //Used to set height of status bar
+    private final int HEIGHT = 50; //Used to set height of status bar
 
     /**
      * The amount of items that are in the StatusBar
      */
-    private static final int ITEM_COUNT = 4; //Used to set width of controls on bar
+    private final int ITEM_COUNT = 4; //Used to set width of controls on bar
 
     /**
-     * The width of the StatusBar
+     * The width of the individual buttons of the StatusBar
      */
-    private static final int WIDTH = Gdx.graphics.getWidth() / ITEM_COUNT;
+    private final int WIDTH = GameMain.GAME_WIDTH / ITEM_COUNT;
 
+    private Gui gui;
     private Label scoreLabel;
 
     /**
@@ -41,12 +42,12 @@ class StatusBar extends Table
      */
     StatusBar(final GameMain game, Gui gui)
     {
-        setSize(Gdx.graphics.getWidth(), HEIGHT);
-        setPosition(0, 0);
+        this.gui = gui;
+
         row().height(HEIGHT);
         defaults().width(WIDTH);
 
-        scoreLabel = new Label("Score: " + Score.getInstance().getCurrentScore(), game.assetLoader.uiSkin, "half-tone");
+        scoreLabel = new Label("Score: 0", game.assetLoader.uiSkin, "half-tone");
         scoreLabel.setAlignment(Align.center, Align.center);
         add(scoreLabel).uniform();
 
@@ -62,7 +63,7 @@ class StatusBar extends Table
 
     @Override
     public void act(float delta) {
-        scoreLabel.setText("Score: " + Score.getInstance().getCurrentScore());
+        scoreLabel.setText("Score: " + gui.getGameWorld().getScore().getCurrentScore());
         super.act(delta);
     }
 }

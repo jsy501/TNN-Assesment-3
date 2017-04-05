@@ -11,7 +11,7 @@ import me.lihq.game.gui.Gui;
 
 /**
  * NEW
- * Basic gui button that interacts with corresponding windows
+ * Basic guiOne button that interacts with corresponding windows
  */
 
 abstract class GuiButton extends TextButton {

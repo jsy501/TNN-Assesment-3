@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.GameWorld;
 import me.lihq.game.gui.speechbubbles.ConversationSpeechBubble;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.PersonState;
@@ -18,18 +19,18 @@ public class PlayerController extends InputAdapter
     /**
      * This stores the player that the controller controls
      */
-    private GameMain game;
+    private GameWorld gameWorld;
     private Player player;
 
     /**
      * Constructor to create the PlayerController to control the provided Player
      *
-     * @param game - The game to be attached
+     * @param gameWorld - The game to be attached
      */
-    public PlayerController(GameMain game)
+    public PlayerController(GameWorld gameWorld)
     {
-        this.game = game;
-        this.player = game.gameWorld.getPlayer();
+        this.gameWorld = gameWorld;
+        this.player = gameWorld.getPlayer();
     }
 
     /**
@@ -78,12 +79,11 @@ public class PlayerController extends InputAdapter
         // player press space to get the conversation flowing, but it should stop when the game is
         // waiting for player input for interaction option
         else if (player.isInConversation()
-                && game.gameWorld.getConversationManager().getCurrentConversation() instanceof ConversationSpeechBubble){
+                && gameWorld.getConversationManager().getCurrentConversation() instanceof ConversationSpeechBubble){
             if (keycode == Input.Keys.SPACE){
-                game.gameWorld.getConversationManager().nextSpeechBubble();
+                gameWorld.getConversationManager().nextSpeechBubble();
             }
         }
-
         return true;
     }
 

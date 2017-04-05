@@ -6,18 +6,16 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 
 import me.lihq.game.*;
-import me.lihq.game.models.Score;
 import me.lihq.game.people.Player;
-import me.lihq.game.people.controller.GamePadController;
 import me.lihq.game.people.controller.PlayerController;
 import me.lihq.game.gui.Gui;
 
 /**
  * EXTENDED
- * This is the screen that is responsible for the navigation of the player around the game.
+ * This is the screen that is responsible for single player version of the game.
  * It displays the current room that the player is in, and allows the user to move the player around between rooms.
  */
-public class NavigationScreen extends AbstractScreen
+public class SinglePlayerGameScreen extends AbstractScreen
 {
     /**
      * The controller that listens for key inputs
@@ -28,26 +26,26 @@ public class NavigationScreen extends AbstractScreen
     private Gui gui;
 
     /**
-     * Initialises the navigation screen
+     * Initialises the screen
      *
      * @param game - The main game instance
      * @param selectedPlayer The detective that the player selected
      */
 
 
-    public NavigationScreen(GameMain game, Player selectedPlayer)
+    public SinglePlayerGameScreen(GameMain game, Player selectedPlayer)
     {
         super(game);
 
-        game.gameWorld = new GameWorld(game, selectedPlayer);
-        this.gameWorld = game.gameWorld;
+        game.gameWorldOne = new GameWorld(game, selectedPlayer);
+        this.gameWorld = game.gameWorldOne;
 
-        game.gui = new Gui(game, gameWorld);
-        this.gui = game.gui;
+        game.guiOne = new Gui(game, gameWorld, false);
+        this.gui = game.guiOne;
 
         gameWorld.setGui(gui);
 
-        playerController = new PlayerController(game);
+        playerController = new PlayerController(gameWorld);
     }
 
     /**
@@ -61,7 +59,7 @@ public class NavigationScreen extends AbstractScreen
         multiplexer.addProcessor(playerController);
         Gdx.input.setInputProcessor(multiplexer);
 
-        Time.getInstance().setPaused(false);
+        gameWorld.getTime().setPaused(false);
     }
 
     /**

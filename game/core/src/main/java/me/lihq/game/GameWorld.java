@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.gui.Gui;
@@ -14,7 +13,6 @@ import me.lihq.game.gui.speechbubbles.InteractionSelectionBubble;
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
-import me.lihq.game.models.Score;
 import me.lihq.game.models.Vector2Int;
 import me.lihq.game.people.Direction;
 import me.lihq.game.people.Npc;
@@ -33,8 +31,10 @@ import me.lihq.game.screen.GameClearScreen;
  * Container for all of the core game objects in the game
  */
 public class GameWorld {
-    private GameMain game;
+    public GameMain game;
     private Gui gui;
+    private Time time;
+    private Score score;
 
     public RoomManager roomManager;
     public NpcManager npcManager;
@@ -64,6 +64,8 @@ public class GameWorld {
 
     public GameWorld(GameMain game, Player selectedPlayer){
         this.game = game;
+        time = new Time();
+        score = new Score();
 
         SpriteBatch gameWorldBatch = new SpriteBatch();
         gameWorldStage = new Stage(new FitViewport(GameMain.GAME_WIDTH / Settings.ZOOM,
@@ -212,9 +214,9 @@ public class GameWorld {
         }
 
         if (isGameClear){
-            Score.getInstance().reset();
-            Time.getInstance().reset();
-            game.setScreen(new GameClearScreen(game));
+            game.setScreen(new GameClearScreen(game, this));
+            score.reset();
+            time.reset();
         }
 
         cameraManager.update();
@@ -248,6 +250,14 @@ public class GameWorld {
 
     public Gui getGui() {
         return gui;
+    }
+
+    public Time getTime(){
+        return time;
+    }
+
+    public Score getScore(){
+        return score;
     }
 
     public Interaction getInteraction(){

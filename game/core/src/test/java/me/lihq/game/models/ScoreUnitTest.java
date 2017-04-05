@@ -1,6 +1,7 @@
 package me.lihq.game.models;
 import me.lihq.game.GameTester;
 
+import me.lihq.game.Score;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class ScoreUnitTest extends GameTester {
 
     @Before
     public void setUp() throws Exception {
-        testScore = Score.getInstance();
+        testScore = new Score();
         testScore.reset();
     }
 

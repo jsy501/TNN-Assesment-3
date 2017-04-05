@@ -1,15 +1,12 @@
 package me.lihq.game;
 
-import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Objects;
 
 import me.lihq.game.models.Clue;
 import me.lihq.game.models.Hint;
-import me.lihq.game.models.Score;
 import me.lihq.game.people.Npc;
-import me.lihq.game.people.Personality;
 import me.lihq.game.people.Player;
 import me.lihq.game.people.QuestionStyle;
 
@@ -32,7 +29,7 @@ public class Interaction {
     public Interaction(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
         this.player = gameWorld.getPlayer();
-        score = Score.getInstance();
+        score = gameWorld.getScore();
     }
 
     public void setInteractingNpc(Npc interactingNpc){

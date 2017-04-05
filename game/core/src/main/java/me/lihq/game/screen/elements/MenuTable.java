@@ -16,7 +16,6 @@ import me.lihq.game.GameMain;
  */
 
 public abstract class MenuTable extends Table {
-    protected GameMain game;
     protected Skin menuSkin;
 
     protected Table titleTable;
@@ -26,11 +25,10 @@ public abstract class MenuTable extends Table {
     /**
      * Constructor for the menu
      *
-     * @param game - The game object the menu is being loaded for
+     * @param skin - The skin for the menu
      */
-    public MenuTable(final GameMain game, String title) {
-        this.game = game;
-        menuSkin = game.assetLoader.menuSkin;
+    public MenuTable(Skin skin, String title) {
+        menuSkin = skin;
 
         align(Align.top);
         setFillParent(true);

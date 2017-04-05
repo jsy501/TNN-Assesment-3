@@ -11,16 +11,10 @@ package me.lihq.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
 
 import me.lihq.game.gui.Gui;
-import me.lihq.game.screen.AbstractScreen;
-import me.lihq.game.screen.MainMenuScreen;
-import me.lihq.game.screen.NavigationScreen;
-import me.lihq.game.screen.PauseScreen;
-import me.lihq.game.screen.PlayerSelectionScreen;
-import me.lihq.game.screen.SplashScreen;
+import me.lihq.game.screen.*;
 
 /**
  * EXTENDED
@@ -36,13 +30,17 @@ public class GameMain extends Game
      */
     public AssetLoader assetLoader;
 
-    public GameWorld gameWorld;
-    public Gui gui;
+    public GameWorld gameWorldOne;
+    public GameWorld gameWorldTwo;
+    public Gui guiOne;
+    public Gui guiTwo;
 
     public MainMenuScreen mainMenuScreen;
     public PauseScreen pauseScreen;
-    public NavigationScreen navigationScreen;
-    public PlayerSelectionScreen playerSelectionScreen;
+    public SinglePlayerGameScreen singlePlayerGameScreen;
+    public TwoPlayerGameScreen twoPlayerGameScreen;
+    public SinglePlayerSelectionScreen singlePlayerSelectionScreen;
+    public TwoPlayerSelectionScreen twoPlayerSelectionScreen;
 
     /**
      * This is called at start up. It initialises the game.

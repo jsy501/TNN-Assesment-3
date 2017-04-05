@@ -3,6 +3,7 @@ package me.lihq.game.models;
 import com.badlogic.gdx.utils.Array;
 
 import me.lihq.game.ClueManager;
+import me.lihq.game.Score;
 import me.lihq.game.people.Npc;
 
 /**
@@ -78,7 +79,6 @@ public class Inventory {
      */
     public void addClue(Clue clue) {
         this.collectedClues.add(clue);
-        Score.getInstance().addPoints(100);
 
         if (collectedClues.size == 6){
             ClueManager.instance.getMotiveClue().setVisible(true);
