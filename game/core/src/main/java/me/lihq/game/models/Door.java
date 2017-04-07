@@ -11,7 +11,6 @@ import me.lihq.game.TileObject;
 import me.lihq.game.people.Direction;
 
 /**
- * NEW
  * This class defines the doors that allow a player to travel between different rooms
  */
 public class Door extends Actor implements Collidable, TileObject{

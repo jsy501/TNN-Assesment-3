@@ -15,7 +15,6 @@ import me.lihq.game.models.ClueType;
 import me.lihq.game.models.Inventory;
 
 /**
- * NEW
  * Used for choosing a clue for questioning
  */
 

@@ -12,7 +12,6 @@ import me.lihq.game.GameMain;
 import me.lihq.game.people.AbstractPerson;
 
 /**
- * NEW
  * Abstract class for Speech bubbles used for conversation between a player and npc.
  */
 

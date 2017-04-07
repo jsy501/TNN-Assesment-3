@@ -9,8 +9,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
- * NEW
- * Basic window used by guiOne. Interacts with a guiOne and gameworld.
+ * Basic window used by guiOne. Interacts with a gui and gameworld.
  */
 
 abstract class GuiWindow extends Dialog {

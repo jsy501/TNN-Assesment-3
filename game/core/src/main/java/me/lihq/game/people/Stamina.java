@@ -4,6 +4,7 @@ package me.lihq.game.people;
 import me.lihq.game.Settings;
 
 /**
+ * NEW
  * The class for managing stamina system in two player mode. Disabled by default.
  */
 
@@ -14,6 +15,7 @@ public class Stamina {
 
     private float currentStamina;
     private boolean isEnabled = false;
+    private boolean isDepleted = false;
 
     public Stamina(){
         currentStamina = DEFAULT_MAX;
@@ -24,7 +26,7 @@ public class Stamina {
             currentStamina -= Math.abs(distanceX) * (MOVE_COST / Settings.TILE_SIZE);
             currentStamina -= Math.abs(distanceY) * (MOVE_COST / Settings.TILE_SIZE);
             if (currentStamina < 0) {
-                currentStamina = 0;
+                isDepleted = true;
             }
         }
     }
@@ -53,8 +55,12 @@ public class Stamina {
         isEnabled = true;
     }
 
-    public void disable(){
-        isEnabled = false;
+    public boolean isDepleted() {
+        return isDepleted;
+    }
+
+    public void setDepleted(boolean depleted) {
+        isDepleted = depleted;
     }
 
     public void reset(){

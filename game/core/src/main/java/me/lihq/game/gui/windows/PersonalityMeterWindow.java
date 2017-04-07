@@ -11,7 +11,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
- * NEW
+ * EXTENDED
  * Window that displays player's current personality meter.
  */
 

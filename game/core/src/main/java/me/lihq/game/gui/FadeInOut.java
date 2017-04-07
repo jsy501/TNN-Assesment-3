@@ -9,12 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import me.lihq.game.GameMain;
 
 /**
- * NEW
  * A blank black background that is used for fade in/out effect for room transition.
  */
 
 public class FadeInOut extends Actor {
-    Texture blackBlank;
+    private Texture blackBlank;
 
     public FadeInOut(){
         Pixmap pixMap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);

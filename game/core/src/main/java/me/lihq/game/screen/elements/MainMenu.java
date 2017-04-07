@@ -13,7 +13,7 @@ import me.lihq.game.screen.SinglePlayerSelectionScreen;
 import me.lihq.game.screen.TwoPlayerSelectionScreen;
 
 /**
- * NEW
+ * EXTENDED
  * Main Menu UI table
  */
 

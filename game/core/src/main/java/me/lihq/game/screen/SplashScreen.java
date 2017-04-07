@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import me.lihq.game.GameMain;
 
 /**
- * NEW
  * Splash screen. The game assets are loaded during splash.
  */
 

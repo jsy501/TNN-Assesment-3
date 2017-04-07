@@ -51,8 +51,6 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     private boolean canMove = true;
 
-    private boolean isInConversation = false;
-
     private final float MOVE_SPEED = 150f;
 
     protected Vector2Int tilePosition = new Vector2Int(0, 0);
@@ -236,24 +234,6 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         return jsonData;
     }
 
-    /**
-     * Characters cannot move while in conversation
-     */
-    public void setInConversation(boolean inConversation) {
-        isInConversation = inConversation;
-        if (isInConversation){
-            state = PersonState.STANDING;
-            setCanMove(false);
-        }
-        else{
-            setCanMove(true);
-        }
-    }
-
-    public boolean isInConversation() {
-        return isInConversation;
-    }
-
     public abstract Personality getPersonality();
 
     public abstract Dialogue getDialogue();
@@ -291,6 +271,11 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     public void setCanMove(boolean canMove) {
         this.canMove = canMove;
+        if (!canMove) {
+            state = PersonState.STANDING;
+            vectorDistanceX = 0;
+            vectorDistanceY = 0;
+        }
     }
 
     public Vector2Int getTilePosition() {

@@ -10,7 +10,6 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.people.QuestionStyle;
 
 /**
- * NEW
  * specialised speech bubble for displaying questioning style available and take user input.
  */
 

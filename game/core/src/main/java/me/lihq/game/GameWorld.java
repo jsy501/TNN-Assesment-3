@@ -22,7 +22,7 @@ import me.lihq.game.models.RoomArrow;
 import me.lihq.game.screen.GameClearScreen;
 
 /**
- * NEW
+ * EXTENDED
  *
  * A working executable for the game can be found on the website http://nxn173.wixsite.com/teamquestionmark/about
  * under assessment 3. However the website links to google drive which is actually holding the executable jar so here
@@ -126,7 +126,7 @@ public class GameWorld {
         player.setState(PersonState.STANDING);
 
         //actual room transition happens after fade out
-        gui.getFadeInOut().addAction(Actions.sequence(
+        game.fadeInOut.addAction(Actions.sequence(
                 Actions.fadeIn(0.5f),
                 Actions.run(() -> {
                     Room exitRoom = player.getCurrentRoom();
@@ -187,8 +187,8 @@ public class GameWorld {
     public void startInteraction(Npc interactingNpc){
         interaction.setInteractingNpc(interactingNpc);
 
-        player.setInConversation(true);
-        interactingNpc.setInConversation(true);
+        player.setCanMove(false);
+        interactingNpc.setCanMove(false);
         interactingNpc.setDirection(player.getDirection().getOpposite());
         conversationManager.addSpeechBubble(player, player.getDialogue().getIntroduction());
         conversationManager.addSpeechBubble(interactingNpc, interactingNpc.getDialogue().getIntroduction());
@@ -199,8 +199,8 @@ public class GameWorld {
     }
 
     public void haltInteraction(){
-        interaction.getInteractingNpc().setInConversation(false);
-        player.setInConversation(false);
+        interaction.getInteractingNpc().setCanMove(true);
+        player.setCanMove(true);
 
         conversationManager.clear();
 
@@ -211,12 +211,6 @@ public class GameWorld {
         if (conversationManager.isFinished()){
             conversationManager.setFinished(false);
             haltInteraction();
-        }
-
-        if (isGameClear){
-            game.setScreen(new GameClearScreen(game, this));
-            score.reset();
-            time.reset();
         }
 
         cameraManager.update();
@@ -238,6 +232,10 @@ public class GameWorld {
 
     public void setGameClear(boolean gameClear) {
         isGameClear = gameClear;
+    }
+
+    public boolean isGameClear() {
+        return isGameClear;
     }
 
     public Player getPlayer() {

@@ -11,7 +11,6 @@ import me.lihq.game.screen.elements.GameClearMenu;
 import me.lihq.game.screen.elements.MainMenu;
 
 /**
- * NEW
  * Screen for game clear. Displays completed time and score, and option to retry or quit.
  */
 

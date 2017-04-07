@@ -25,7 +25,6 @@ import me.lihq.game.gui.RoomTag;
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 /**
- * EXTENDED
  * This class defines the assetLoader that the game uses.
  */
 public class AssetLoader {

@@ -3,25 +3,29 @@ package me.lihq.game.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
+import me.lihq.game.gui.FadeInOut;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.people.Player;
 import me.lihq.game.people.controller.PlayerController;
 
+/**
+ * NEW
+ * Game screen for two player mode
+ */
 
-public class TwoPlayerGameScreen extends AbstractScreen{
+public class TwoPlayerGameScreen extends GameScreen{
     private PlayerController playerOneController;
     private PlayerController playerTwoController;
-    private PlayerController currentController;
 
     private GameWorld gameWorldOne;
     private GameWorld gameWorldTwo;
-    private GameWorld currentGameWorld;
 
     private Gui guiOne;
     private Gui guiTwo;
-    private Gui currentGui;
 
     private boolean isPlayerOneTurn = true;
 
@@ -29,18 +33,13 @@ public class TwoPlayerGameScreen extends AbstractScreen{
         super(game);
 
         playerOne.getStamina().enable();
-        game.gameWorldOne = new GameWorld(game, playerOne);
-        this.gameWorldOne = game.gameWorldOne;
+        gameWorldOne = new GameWorld(game, playerOne);
 
         playerTwo.getStamina().enable();
-        game.gameWorldTwo = new GameWorld(game, playerTwo);
-        this.gameWorldTwo = game.gameWorldTwo;
+        gameWorldTwo = new GameWorld(game, playerTwo);
 
-        game.guiOne = new Gui(game, gameWorldOne, true);
-        this.guiOne = game.guiOne;
-
-        game.guiTwo = new Gui(game, gameWorldTwo, true);
-        this.guiTwo = game.guiTwo;
+        guiOne = new Gui(game, gameWorldOne, true);
+        guiTwo = new Gui(game, gameWorldTwo, true);
 
         gameWorldOne.setGui(guiOne);
         gameWorldTwo.setGui(guiTwo);
@@ -54,6 +53,7 @@ public class TwoPlayerGameScreen extends AbstractScreen{
     }
 
     public void switchPlayer(){
+        currentGameWorld.getPlayer().getStamina().reset();
         currentGameWorld.getTime().setPaused(true);
 
         if (isPlayerOneTurn){
@@ -73,55 +73,24 @@ public class TwoPlayerGameScreen extends AbstractScreen{
         currentGameWorld.getTime().setPaused(false);
         Gdx.input.setInputProcessor(multiplexer);
 
-        currentGameWorld.getPlayer().getStamina().reset();
-
         isPlayerOneTurn = !isPlayerOneTurn;
     }
 
     @Override
-    public void show() {
-        InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(currentGui.getGuiStage());
-        multiplexer.addProcessor(currentController);
-        Gdx.input.setInputProcessor(multiplexer);
-
-        currentGameWorld.getTime().setPaused(false);
-    }
-
-    @Override
     public void render(float delta) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            if (game.pauseScreen == null) {
-                game.pauseScreen = new PauseScreen(game);
-            }
-            game.setScreen(game.pauseScreen);
-        }
+        super.render(delta);
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.T)){
-            currentGameWorld.setGameClear(true);
-        }
+        if (currentGameWorld.getPlayer().getStamina().isDepleted()){
+            currentGameWorld.getPlayer().getStamina().setDepleted(false);
+            currentGameWorld.getPlayer().setCanMove(false);
 
-        if (currentGameWorld.getPlayer().getStamina().getCurrentStamina() == 0){
-            game.twoPlayerGameScreen.switchPlayer();
+            game.fadeInOut.addAction(Actions.sequence(
+                    Actions.fadeIn(0.5f),
+                    Actions.run(this::switchPlayer),
+                    Actions.fadeOut(0.5f),
+                    Actions.run(() -> currentGameWorld.getPlayer().setCanMove(true))
+            ));
         }
-
-        if (isPlayerOneTurn) {
-            gameWorldOne.render(delta);
-            guiOne.render(delta);
-        }
-        else{
-            gameWorldTwo.render(delta);
-            guiTwo.render(delta);
-        }
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        gameWorldOne.getGameWorldStage().getViewport().update(width, height);
-        guiOne.getGuiStage().getViewport().update(width,height);
-
-        gameWorldTwo.getGameWorldStage().getViewport().update(width, height);
-        guiTwo.getGuiStage().getViewport().update(width,height);
     }
 
     @Override

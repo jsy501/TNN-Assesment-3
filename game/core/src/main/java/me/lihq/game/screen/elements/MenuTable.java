@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Align;
 import me.lihq.game.GameMain;
 
 /**
- * NEW
  * Abstract class for menu template for the screens.
  */
 

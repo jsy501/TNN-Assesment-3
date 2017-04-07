@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import me.lihq.game.gui.Gui;
 
 /**
- * NEW
  * Button that opens personality meter window
  */
 public class PersonalityMeterButton extends GuiButton {

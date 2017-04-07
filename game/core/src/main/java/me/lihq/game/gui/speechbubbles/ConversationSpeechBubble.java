@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.Align;
 import me.lihq.game.people.AbstractPerson;
 
 /**
- * NEW
  * Specialised speech bubble that displays a given string
  */
 

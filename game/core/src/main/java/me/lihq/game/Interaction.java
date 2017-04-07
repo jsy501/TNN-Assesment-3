@@ -11,7 +11,6 @@ import me.lihq.game.people.Player;
 import me.lihq.game.people.QuestionStyle;
 
 /**
- * NEW
  * The interaction class holds all the logic for questioning and accuse
  */
 public class Interaction {

@@ -3,7 +3,6 @@ package me.lihq.game.screen;
 import com.badlogic.gdx.Screen;
 import me.lihq.game.GameMain;
 
-
 /**
  * This is defines all the common methods and properties for each screen. It implements the screen interface from com.badlogic.gdx.Screen.
  * A screen is a like the current view of the game. E.g. Main MainMenu or Pause screen or dialogue screen.

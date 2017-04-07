@@ -11,7 +11,6 @@ import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Npc;
 
 /**
- * NEW
  * A manager class that takes care of conversation flow between a player and a npc. It uses a queue
  * to load up speech bubble or action to be executed in FIFO order.
  */

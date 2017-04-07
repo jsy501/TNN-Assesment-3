@@ -20,48 +20,21 @@ import me.lihq.game.people.Player;
 
 /**
  * NEW
- * Screen that users pick their detectives.
+ * Screen for player selection for single player mode
  */
 
-public class SinglePlayerSelectionScreen extends AbstractScreen {
-    private Array<Player> playerArray;
-
-    private Stage stage;
-
-    private Table table;
-    private Label selectionLabel;
-    private Table selectionTable;
-    private Dialog selectionConfirmWindow;
-
-    private Player selectedPlayer;
+public class SinglePlayerSelectionScreen extends PlayerSelectionScreen {
 
     public SinglePlayerSelectionScreen(GameMain game) {
         super(game);
-
-        AssetLoader assetLoader = game.assetLoader;
-
-        Json json = new Json();
-        playerArray = new Array<>();
-
-        Array<JsonValue> playerJsonData = json.readValue(Array.class, assetLoader.playerJsonData);
-        for (JsonValue data : playerJsonData) {
-            playerArray.add(new Player(data, assetLoader.playerSpriteSheetArray.get(data.getInt("id"))));
-        }
-
-        stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
-
-        table = new Table();
-        table.setFillParent(true);
-
         selectionLabel = new Label("Choose your detective!", assetLoader.uiSkin, "title");
-
-        selectionTable = new Table();
 
         selectionConfirmWindow = new Dialog("", game.assetLoader.uiSkin){
             @Override
             protected void result(Object object) {
                 if (object.equals(true)){
-                    game.singlePlayerGameScreen = new SinglePlayerGameScreen(game, selectedPlayer);
+                    playerOne = (Player) selectedPlayerSlot.getSlotActor();
+                    game.singlePlayerGameScreen = new SinglePlayerGameScreen(game, playerOne);
                     game.setScreen(game.singlePlayerGameScreen);
                 }
                 else {
@@ -72,59 +45,6 @@ public class SinglePlayerSelectionScreen extends AbstractScreen {
 
         selectionConfirmWindow.button("OK", true);
         selectionConfirmWindow.button("Cancel", false);
-    }
-
-    @Override
-    public void show() {
-        for (Player player : playerArray) {
-            Slot playerSlot = new Slot(player, game.assetLoader.uiSkin);
-            playerSlot.addListener(new InputListener(){
-                @Override
-                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                    playerSlot.setCursorOver(true);
-                }
-
-                @Override
-                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                    playerSlot.setCursorOver(false);
-                }
-
-                @Override
-                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    return true;
-                }
-
-                @Override
-                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                    selectedPlayer = player;
-
-                    selectionConfirmWindow.getContentTable().clear();
-                    selectionConfirmWindow.text(player.getDescription());
-                    selectionConfirmWindow.show(stage);
-                }
-            });
-
-            selectionTable.add(playerSlot);
-        }
-
-        table.add(selectionLabel).row();
-        table.add(selectionTable);
-
-        stage.addActor(table);
-
-
-        Gdx.input.setInputProcessor(stage);
-    }
-
-    @Override
-    public void render(float delta) {
-        stage.act();
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width,height);
     }
 
     @Override

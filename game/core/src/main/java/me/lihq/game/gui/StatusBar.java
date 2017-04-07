@@ -12,7 +12,6 @@ import me.lihq.game.gui.buttons.PersonalityMeterButton;
 import me.lihq.game.Score;
 
 /**
- * EXTENDED
  * The status bar shown throughout the game
  * Contains UI controls for presenting the game status to the player
  */

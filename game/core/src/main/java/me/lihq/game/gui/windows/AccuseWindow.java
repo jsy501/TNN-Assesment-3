@@ -14,7 +14,6 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 
 /**
- * NEW
  * Window that displays collected clues which players can choose to present for accusation.
  */
 

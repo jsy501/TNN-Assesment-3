@@ -12,7 +12,6 @@ import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
 
 /**
- * NEW
  * Window that has organised slots that users can interact with. Used for inventory, question and accuse window.
  */
 

@@ -1,7 +1,6 @@
 package me.lihq.game.people;
 
 /**
- * EXTENDED
  * These are the possible personalities of the person
  * The ranges are inclusive.
  */

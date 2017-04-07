@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 
 /**
- * NEW
  * Npc dialogue class contains the dialogue information for the npc
  */
 public class NpcDialogue extends Dialogue{

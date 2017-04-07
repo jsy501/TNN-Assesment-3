@@ -17,7 +17,6 @@ import me.lihq.game.*;
 
 
 /**
- * EXTENDED
  * This class defines the clues that the player needs to find in order to solve the murder.
  */
 public class Clue extends Actor implements Collidable, TileObject {

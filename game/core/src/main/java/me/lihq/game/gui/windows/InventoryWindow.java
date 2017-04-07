@@ -14,7 +14,6 @@ import me.lihq.game.models.Clue;
 import me.lihq.game.models.Inventory;
 
 /**
- * NEW
  * Window that displays data in inventory. Clicked slot will display the description of the clue
  * and the related npcs.
  */

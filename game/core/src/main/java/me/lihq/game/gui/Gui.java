@@ -26,7 +26,7 @@ import me.lihq.game.models.Room;
 import me.lihq.game.Score;
 
 /**
- * NEW
+ * EXTENDED
  * A container for all of the gui element of the game
  */
 
@@ -39,8 +39,6 @@ public class Gui {
 
     private SpriteBatch guiBatch;
     private Stage guiStage;
-
-    private FadeInOut fadeInOut;
 
     // all of the gui windows in the game
     private InfoWindow infoWindow;
@@ -73,8 +71,6 @@ public class Gui {
         Table lowerTable = new Table();
         lowerTable.align(Align.bottom);
 
-        fadeInOut = new FadeInOut();
-
         roomTag = new RoomTag(game.assetLoader.roomTagBorder, game.assetLoader.roomTagFont);
         table.addActor(roomTag);
 
@@ -85,7 +81,6 @@ public class Gui {
         table.add(lowerTable).height(Value.percentHeight(0.5f, table)).fillX();
 
         guiStage.addActor(table);
-        guiStage.addActor(fadeInOut);
 
 
         // time and score must be added into gui stage for them to be updated
@@ -156,8 +151,6 @@ public class Gui {
     }
 
     public void render(float delta){
-        System.out.println(gameWorld.getTime().getTotalTime());
-
         guiStage.act(delta);
         guiStage.draw();
     }
@@ -188,10 +181,6 @@ public class Gui {
 
     public AccuseWindow getAccuseWindow() {
         return accuseWindow;
-    }
-
-    public FadeInOut getFadeInOut() {
-        return fadeInOut;
     }
 
     public void dispose(){

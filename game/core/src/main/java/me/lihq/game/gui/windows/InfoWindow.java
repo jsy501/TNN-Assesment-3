@@ -6,7 +6,6 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
- * NEW
  * Window that can display information that the player may need; string and/or actor
  */
 

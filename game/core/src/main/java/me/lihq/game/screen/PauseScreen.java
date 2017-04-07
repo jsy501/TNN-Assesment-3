@@ -22,18 +22,20 @@ public class PauseScreen extends AbstractScreen
      */
     private Stage stage;
     private PauseMenu pauseMenu;
+    private GameScreen gameScreen;
 
     /**
      * This constructor sets the relevant properties of the class.
      *
      * @param game this provides access to the gameMain class so that screens can set the states of the game.
      */
-    public PauseScreen(GameMain game)
+    public PauseScreen(GameMain game, GameScreen gameScreen)
     {
         super(game);
+        this.gameScreen = gameScreen;
         stage = new Stage(new FitViewport(GameMain.GAME_WIDTH, GameMain.GAME_HEIGHT));
         //Creates the Pause menu
-        pauseMenu = new PauseMenu(game);
+        pauseMenu = new PauseMenu(game, gameScreen);
     }
 
     /**
@@ -45,10 +47,7 @@ public class PauseScreen extends AbstractScreen
         stage.addActor(pauseMenu);
         Gdx.input.setInputProcessor(stage);
 
-        game.gameWorldOne.getTime().setPaused(true);
-        if (game.gameWorldTwo != null){
-            game.gameWorldTwo.getTime().setPaused(true);
-        }
+        gameScreen.currentGameWorld.getTime().setPaused(true);
     }
 
     /**

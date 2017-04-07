@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import me.lihq.game.gui.Gui;
 
 /**
- * NEW
  * Gui button that opens inventory window.
  */
 

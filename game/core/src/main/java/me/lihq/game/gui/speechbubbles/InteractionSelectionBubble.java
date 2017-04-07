@@ -11,7 +11,6 @@ import me.lihq.game.people.Npc;
 import me.lihq.game.people.Player;
 
 /**
- * NEW
  * window for getting interaction option from the player. The options are question, accuse and ignore.
  */
 public class InteractionSelectionBubble extends SpeechBubble{
@@ -102,7 +101,8 @@ public class InteractionSelectionBubble extends SpeechBubble{
         ignoreButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                 conversationManager.setFinished(true);
+                conversationManager.addSpeechBubble(player, "Never mind");
+                conversationManager.nextSpeechBubble();
             }
         });
         addButton(ignoreButton);

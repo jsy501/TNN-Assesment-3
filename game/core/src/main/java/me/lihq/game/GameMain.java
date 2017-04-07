@@ -11,8 +11,12 @@ package me.lihq.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
+import me.lihq.game.gui.FadeInOut;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.screen.*;
 
@@ -30,11 +34,6 @@ public class GameMain extends Game
      */
     public AssetLoader assetLoader;
 
-    public GameWorld gameWorldOne;
-    public GameWorld gameWorldTwo;
-    public Gui guiOne;
-    public Gui guiTwo;
-
     public MainMenuScreen mainMenuScreen;
     public PauseScreen pauseScreen;
     public SinglePlayerGameScreen singlePlayerGameScreen;
@@ -43,11 +42,36 @@ public class GameMain extends Game
     public TwoPlayerSelectionScreen twoPlayerSelectionScreen;
 
     /**
+     * used for screen transition effect
+     */
+    private Stage stage;
+    public FadeInOut fadeInOut;
+
+
+    /**
+     * setScreen override for screen transition effect addition
+     * @param screen
+     */
+    @Override
+    public void setScreen(Screen screen) {
+        fadeInOut.addAction(Actions.sequence(
+                Actions.fadeIn(0.3f),
+                Actions.run(() -> GameMain.super.setScreen(screen)),
+                Actions.fadeOut(0.3f)
+        ));
+
+    }
+
+    /**
      * This is called at start up. It initialises the game.
      */
     @Override
     public void create(){
         assetLoader = new AssetLoader();
+
+        stage = new Stage();
+        fadeInOut = new FadeInOut();
+        stage.addActor(fadeInOut);
 
         //Set up the SplashScreen
         this.setScreen(new SplashScreen(this));
@@ -64,6 +88,8 @@ public class GameMain extends Game
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         super.render(); // This calls the render method of the screen that is currently set
+        stage.act();
+        stage.draw();
     }
 
     /**
@@ -73,6 +99,7 @@ public class GameMain extends Game
     public void dispose()
     {
         assetLoader.dispose();
+        stage.dispose();
     }
 
     /**

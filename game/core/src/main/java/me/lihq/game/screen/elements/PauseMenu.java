@@ -8,9 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.screen.AbstractScreen;
 
 /**
- * NEW
+ * EXTENDED
  * Table that contains contents for pause screen
  */
 
@@ -20,7 +21,7 @@ public class PauseMenu extends MenuTable{
      *
      * @param game - The game object the menu is being loaded for
      */
-    public PauseMenu(GameMain game) {
+    public PauseMenu(GameMain game, AbstractScreen gameScreen) {
         super(game.assetLoader.menuSkin, "PAUSE");
 
         TextButton resumeButton = new TextButton("Resume", menuSkin);
@@ -41,7 +42,7 @@ public class PauseMenu extends MenuTable{
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.setScreen(game.singlePlayerGameScreen);
+                game.setScreen(gameScreen);
             }
         });
 

@@ -16,7 +16,6 @@ import me.lihq.game.people.AbstractPerson;
 import me.lihq.game.people.Npc;
 
 /**
- * NEW
  * Window that shows all of the npcs the player had met.
  */
 

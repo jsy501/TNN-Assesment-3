@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.people.Npc;
 
 /**
- * EXTENDED
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
  */
 public class Room

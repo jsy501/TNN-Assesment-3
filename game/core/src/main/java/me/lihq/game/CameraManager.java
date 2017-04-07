@@ -7,7 +7,6 @@ import me.lihq.game.people.Npc;
 import me.lihq.game.people.Player;
 
 /**
- * NEW
  * Controls camera in the game world that follows player.
  */
 

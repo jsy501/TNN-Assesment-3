@@ -124,10 +124,12 @@ public class Player extends AbstractPerson {
      */
     @Override
     public void act(float delta) {
-        moveBy(vectorDistanceX, vectorDistanceY);
-        stamina.move(vectorDistanceX, vectorDistanceY);
-        vectorDistanceX = 0;
-        vectorDistanceY = 0;
+        if (isCanMove()) {
+            moveBy(vectorDistanceX, vectorDistanceY);
+            stamina.move(vectorDistanceX, vectorDistanceY);
+            vectorDistanceX = 0;
+            vectorDistanceY = 0;
+        }
 
         RoomArrow arrow = roomArrowCollisionDetection(collisionBox);
         if (arrow != null){

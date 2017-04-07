@@ -13,7 +13,7 @@ import me.lihq.game.Score;
 import me.lihq.game.screen.SinglePlayerSelectionScreen;
 
 /**
- * NEW
+ * EXTENDED
  * Table that contains contents for game clear screen
  */
 

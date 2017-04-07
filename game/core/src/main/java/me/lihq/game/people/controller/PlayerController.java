@@ -11,7 +11,6 @@ import me.lihq.game.people.PersonState;
 import me.lihq.game.people.Player;
 
 /**
- * EXTENDED
  * This class allows the player to be moved and controlled.
  */
 public class PlayerController extends InputAdapter
@@ -78,9 +77,9 @@ public class PlayerController extends InputAdapter
 
         // player press space to get the conversation flowing, but it should stop when the game is
         // waiting for player input for interaction option
-        else if (player.isInConversation()
-                && gameWorld.getConversationManager().getCurrentConversation() instanceof ConversationSpeechBubble){
-            if (keycode == Input.Keys.SPACE){
+        else if (!gameWorld.getConversationManager().isFinished()){
+            if (keycode == Input.Keys.SPACE
+                    && gameWorld.getConversationManager().getCurrentConversation() instanceof ConversationSpeechBubble){
                 gameWorld.getConversationManager().nextSpeechBubble();
             }
         }

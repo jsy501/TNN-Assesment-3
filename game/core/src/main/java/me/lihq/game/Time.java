@@ -3,7 +3,7 @@ package me.lihq.game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
- * NEW
+ * EXTENDED
  * Actor that keeps track of game play totalTime. It should pause while in pause screen.
  */
 
