@@ -1,0 +1,4 @@
+		skin = new Skin(
+			Gdx.files.internal("skin/skin.json"),
+			new TextureAtlas(Gdx.files.internal("skin/skin.atlas"))
+		);
