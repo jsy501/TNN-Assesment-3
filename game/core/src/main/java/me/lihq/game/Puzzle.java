@@ -29,7 +29,7 @@ public class Puzzle extends Stage {
     private final Label timeLabel;
     private int step = 0;
     private Array<Card> cardArray = new Array<Card>();
-    private Boolean isClear = false;
+    private boolean isClear = false;
     private final int maxStep = 22;
     private float gameTime = 0;
     private final float maxGameTime= 60;
@@ -43,7 +43,7 @@ public class Puzzle extends Stage {
 
     public Puzzle(PuzzleScreen puzzleScreen) {
         screen = puzzleScreen;
-        Array<JsonValue> list = json.fromJson(Array.class, Gdx.files.internal("cards.json"));
+        Array<JsonValue> list = json.fromJson(Array.class, Gdx.files.internal("assets/cards.json"));
         for (JsonValue v : list) {
             cardArray.add(json.readValue(Card.class, v));
             cardArray.add(json.readValue(Card.class, v));

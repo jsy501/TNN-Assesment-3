@@ -16,7 +16,7 @@ public class Card extends ImageButton {
     private int uid;
     private String front;
     private static Texture BACKIMAGE = new Texture("puzzle/qm.png");
-    private Boolean isFilp = false;
+    private boolean isFilp = false;
 
     public Card() {
         super(new TextureRegionDrawable(new TextureRegion(BACKIMAGE)));
@@ -31,21 +31,21 @@ public class Card extends ImageButton {
     /**
      * isMatch method test if the clicked card matches with previous card.
      */
-    public boolean isMatch(Card cardNext){
-        return(this.getUid()==cardNext.getUid());
+    public boolean isMatch(Card cardNext) {
+        return (this.getUid() == cardNext.getUid());
     }
 
     /**
      * return the uid of the card.
      */
-    public int getUid(){
+    public int getUid() {
         return uid;
     }
 
     /**
      * Method allows to change the Flip state.
      */
-    public void setIsFilp(Boolean flip){
+    public void setIsFilp(Boolean flip) {
         isFilp = flip;
         System.out.println(isFilp + ", " + uid);
         getStyle().imageUp = (new TextureRegionDrawable(new TextureRegion(flip ? new Texture(front) : BACKIMAGE)));
@@ -55,6 +55,7 @@ public class Card extends ImageButton {
     /**
      * Method to get the flip state.
      */
-    public Boolean getIsFilp(){
+    public boolean getIsFilp() {
         return isFilp;
     }
+}
