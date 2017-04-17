@@ -43,7 +43,7 @@ public class StaminaBar extends Table{
         endTurnButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.twoPlayerGameScreen.switchPlayer();
+                gameWorld.getPlayer().getStamina().setDepleted(true);
             }
         });
 

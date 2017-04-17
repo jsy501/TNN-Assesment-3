@@ -1,28 +1,15 @@
-package me.lihq.game.screen;
-
+package me.lihq.game.puzzle;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import me.lihq.game.Puzzle;
 
-public class PuzzleScreen implements Screen {
-    private Puzzle stage;
+public class PuzzleStartScreen implements Screen {
+    private StartMenu stage;
 
-    public void setCallback(Runnable callback) {
-
-        this.callback = callback;
-        //TODO interface for success and fail
-    }
-
-    private Runnable callback;
-
-    public Runnable getCallback() {
-        return callback;
-    }
 
     @Override
     public void show() {
-        this.stage = new Puzzle(this);
+        this.stage = new StartMenu(this);
         Gdx.input.setInputProcessor(stage);
 
     }
@@ -58,3 +45,5 @@ public class PuzzleScreen implements Screen {
 
     }
 }
+
+

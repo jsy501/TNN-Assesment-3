@@ -15,7 +15,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "Team No Name" // Change this
+        appName = "Team No Name"
         gdxVersion = '1.9.6'
         roboVMVersion = '2.3.0'
         box2DLightsVersion = '1.4'

@@ -1,4 +1,4 @@
-package me.lihq.game.screen;
+package me.lihq.game.puzzle;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

@@ -1,4 +1,4 @@
-package me.lihq.game;
+package me.lihq.game.puzzle;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -16,8 +16,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
-import me.lihq.game.screen.PuzzleEndScreen;
-import me.lihq.game.screen.PuzzleScreen;
 
 import java.text.DecimalFormat;
 

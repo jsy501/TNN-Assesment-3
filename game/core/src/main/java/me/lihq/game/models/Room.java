@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
 import me.lihq.game.people.Npc;
 
 /**
+ * EXTENDED
  * This class defines a room which is a game representation of a real world room in the Ron Cooke Hub.
  */
 public class Room
@@ -52,22 +53,18 @@ public class Room
         this.mapFile = map;
         this.name = (String) map.getProperties().get("name");
 
-        //these layers contain meta data tiles that shouldn't be rendered
-        mapFile.getLayers().get("Collision").setVisible(false);
-        mapFile.getLayers().get("HidingSpot").setVisible(false);
-
         clueArray = new Array<>();
         npcArray = new Array<>();
         exitArray = new Array<>();
         entryArray = new Array<>();
         roomArrowArray = new Array<>();
 
-        exitArray.addAll(getExit());
-        entryArray.addAll(getEntry());
+        exitArray.addAll(importExit());
+        entryArray.addAll(importEntry());
         roomArrowArray.addAll(getRoomArrow(exitArray, roomArrowAtlas));
 
         hidingSpots = new Array<>();
-        hidingSpots.addAll(getAllHidingSpots());
+        hidingSpots.addAll(importHidingSpots());
     }
 
 
@@ -97,11 +94,7 @@ public class Room
      */
     public boolean isWalkableTile(int x, int y) {
         TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("Collision");
-        if (layer.getCell(x, y) == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return layer.getCell(x, y) == null;
     }
 
     /**
@@ -159,7 +152,7 @@ public class Room
 
     public Array<RoomArrow> getRoomArrowArray(){ return roomArrowArray; }
 
-    private Array<Door> getExit()
+    private Array<Door> importExit()
     {
         MapLayer layer = mapFile.getLayers().get("Transition");
         Array<Door> exitArray = new Array<>();
@@ -172,7 +165,7 @@ public class Room
         return exitArray;
     }
 
-    private Array<Door> getEntry(){
+    private Array<Door> importEntry(){
         MapLayer layer = mapFile.getLayers().get("Transition");
         Array<Door> entryArray = new Array<>();
 
@@ -242,7 +235,7 @@ public class Room
     * This will check the map for any potential hiding locations, and add them as a list of coordinates
     *
     */
-    private Array<Vector2Int> getAllHidingSpots() {
+    private Array<Vector2Int> importHidingSpots() {
         TiledMapTileLayer layer = (TiledMapTileLayer) mapFile.getLayers().get("HidingSpot");
         int roomTileWidth = layer.getWidth();
         int roomTileHeight = layer.getHeight();
@@ -260,6 +253,22 @@ public class Room
             }
         }
         return spots;
+    }
+
+    /**
+     * adds door to the secret room
+     */
+    public void addSecretRoomDoor(){
+        MapLayer layer = mapFile.getLayers().get("SecretDoor");
+
+        for (MapObject object : layer.getObjects()) {
+            if (object.getProperties().get("type").equals("Entry")) {
+                entryArray.add(new Door((RectangleMapObject) object));
+            }
+            else{
+                exitArray.add(new Door((RectangleMapObject) object));
+            }
+        }
     }
 
     public Array<Vector2Int> getHidingSpots() {

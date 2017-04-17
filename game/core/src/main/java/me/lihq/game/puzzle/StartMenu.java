@@ -1,4 +1,4 @@
-package me.lihq.game;
+package me.lihq.game.puzzle;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -11,8 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import me.lihq.game.screen.PuzzleScreen;
-import me.lihq.game.screen.PuzzleStartScreen;
+import me.lihq.game.puzzle.Puzzle;
+import me.lihq.game.puzzle.PuzzleGame;
+import me.lihq.game.puzzle.PuzzleScreen;
+import me.lihq.game.puzzle.PuzzleStartScreen;
 
 /**
  * Created by PPPPPP on 2017/4/16.
@@ -23,8 +25,8 @@ public class StartMenu extends Stage {
     private TextButton startButton;
     private TextButton quitButton;
     private Skin skin = new Skin(
-            Gdx.files.internal("skin/skin.json"),
-            new TextureAtlas(Gdx.files.internal("skin/skin.atlas"))
+            Gdx.files.internal("assets/skin/skin.json"),
+            new TextureAtlas(Gdx.files.internal("assets/skin/skin.atlas"))
     );
     private final String rule = "Your aim is to find all the match pair of the cards. \n" +
             "Click on the card to filp. \n" +
@@ -40,8 +42,7 @@ public class StartMenu extends Stage {
             "Good Luck!";
 
     public StartMenu(PuzzleStartScreen menuScreen) {
-        super();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("calibri.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("assets/fonts/calibri.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter p = new FreeTypeFontGenerator.FreeTypeFontParameter();
         p.size = 20;
         BitmapFont font20 = generator.generateFont(p);

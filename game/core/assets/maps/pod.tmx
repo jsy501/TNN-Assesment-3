@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="20" height="20" tilewidth="32" tileheight="32" nextobjectid="5">
  <properties>
+  <property name="hasSecretDoor" type="bool" value="true"/>
   <property name="id" type="int" value="9"/>
   <property name="name" value="Pod"/>
  </properties>
@@ -188,7 +189,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer name="Collision" width="20" height="20">
+ <layer name="Collision" width="20" height="20" visible="0">
   <data encoding="csv">
 460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,
 460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,460,
@@ -236,6 +237,20 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="SecretDoor">
+  <object id="4" name="fromSecretRoom" type="Entry" x="32" y="224" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="10"/>
+    <property name="direction" value="SOUTH"/>
+   </properties>
+  </object>
+  <object id="3" name="toSecretRoom" type="Exit" x="32" y="192" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="10"/>
+    <property name="direction" value="NORTH"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="Transition">
   <object id="1" name="toOutside" type="Exit" x="608" y="288" width="32" height="64">
    <properties>

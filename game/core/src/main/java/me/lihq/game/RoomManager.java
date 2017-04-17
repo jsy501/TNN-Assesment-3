@@ -3,15 +3,18 @@ package me.lihq.game;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
 
 /**
+ * EXTENDED
  * Manager class for rooms. it initialises all the in game rooms with TiledMap files
  */
 public class RoomManager
 {
     private Array<Room> roomArray;
     private Room murderRoom;
+    private Room secretRoom;
 
     /**
      * Constructs the map
@@ -31,11 +34,26 @@ public class RoomManager
             roomArray.add(new Room(map, assetLoader.arrowAtlas));
         }
 
-        /**
-         * Assign the murder room
-         */
+
+        //Assign the murder room
         murderRoom = roomArray.random();
         murderRoom.setMurderRoom(true);
+
+        //secret room init
+        secretRoom = new Room(assetLoader.secretRoom, assetLoader.arrowAtlas);
+        Array<Room> roomsWithSecretDoor = new Array<>();
+        for (Room room : roomArray){
+            if (room.getTiledMap().getProperties().get("hasSecretDoor").equals(true)){
+                roomsWithSecretDoor.add(room);
+            }
+        }
+        Room forSecretRoom = roomsWithSecretDoor.random();
+        System.out.println("Secret room in " + forSecretRoom.getName());
+
+        secretRoom.getEntryArray().get(0).setConnectedRoomId(forSecretRoom.getID());
+        secretRoom.getExitArray().get(0).setConnectedRoomId(forSecretRoom.getID());
+
+        forSecretRoom.addSecretRoomDoor();
     }
 
     /**
@@ -49,6 +67,8 @@ public class RoomManager
         for (Room room : roomArray) {
             if (room.getID() == id) return room;
         }
+
+        if (secretRoom.getID() == id) return secretRoom;
 
         return null;
     }

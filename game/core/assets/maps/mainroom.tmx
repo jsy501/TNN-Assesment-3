@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-down" width="29" height="33" tilewidth="32" tileheight="32" nextobjectid="15">
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="29" height="33" tilewidth="32" tileheight="32" nextobjectid="18">
  <properties>
+  <property name="hasSecretDoor" type="bool" value="true"/>
   <property name="id" type="int" value="0"/>
   <property name="name" value="Main Foyer"/>
  </properties>
@@ -353,6 +354,20 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="SecretDoor">
+  <object id="15" name="toSecretRoom" type="Entry" x="224" y="64" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="10"/>
+    <property name="direction" value="NORTH"/>
+   </properties>
+  </object>
+  <object id="17" name="fromSecretRoom" type="Exit" x="224" y="96" width="32" height="32">
+   <properties>
+    <property name="connectedRoomId" type="int" value="10"/>
+    <property name="direction" value="SOUTH"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="Transition">
   <object id="1" name="toComputerRoom" type="Exit" x="32" y="768" width="32" height="32">
    <properties>

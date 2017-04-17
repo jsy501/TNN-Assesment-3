@@ -54,6 +54,7 @@ public class AssetLoader {
     public ArrayMap<Integer, TextureAtlas> npcSpriteSheetMapArray;
 
     public Array<TiledMap> mapArray;
+    public TiledMap secretRoom;
 
     public Texture roomTagBorder;
 
@@ -132,6 +133,7 @@ public class AssetLoader {
         manager.load(ASSET_FOLDER + "maps/portersOffice.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/rch037.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/toilet.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/storageRoom.tmx", TiledMap.class);
     }
 
     /**
@@ -181,6 +183,9 @@ public class AssetLoader {
         mapArray.add(manager.get(ASSET_FOLDER + "maps/portersOffice.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/rch037.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/toilet.tmx"));
+
+        //secret room assign
+        secretRoom = manager.get(ASSET_FOLDER + "maps/storageRoom.tmx");
 
         //arrow texture assign
         arrowAtlas = manager.get(ASSET_FOLDER + "arrows.pack");

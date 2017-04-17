@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="left-down" width="24" height="22" tilewidth="32" tileheight="32" nextobjectid="5">
  <properties>
+  <property name="hasSecretDoor" type="bool" value="false"/>
   <property name="id" type="int" value="1"/>
   <property name="name" value="RCH/037"/>
  </properties>

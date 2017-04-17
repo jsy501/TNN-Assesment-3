@@ -95,6 +95,10 @@ public class Door extends Actor implements Collidable, TileObject{
         return direction;
     }
 
+    public void setConnectedRoomId(int connectedRoomId) {
+        this.connectedRoomId = connectedRoomId;
+    }
+
     public int getConnectedRoomId() {
         return connectedRoomId;
     }
