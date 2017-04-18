@@ -355,13 +355,13 @@
 </data>
  </layer>
  <objectgroup name="SecretDoor">
-  <object id="15" name="toSecretRoom" type="Entry" x="224" y="64" width="32" height="32">
+  <object id="15" name="toSecretRoom" type="Exit" x="224" y="64" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="10"/>
     <property name="direction" value="NORTH"/>
    </properties>
   </object>
-  <object id="17" name="fromSecretRoom" type="Exit" x="224" y="96" width="32" height="32">
+  <object id="17" name="fromSecretRoom" type="Entry" x="224" y="96" width="32" height="32">
    <properties>
     <property name="connectedRoomId" type="int" value="10"/>
     <property name="direction" value="SOUTH"/>

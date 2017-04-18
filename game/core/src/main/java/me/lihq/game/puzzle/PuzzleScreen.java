@@ -26,27 +26,23 @@ import java.text.DecimalFormat;
 public class PuzzleScreen extends AbstractScreen {
     private Stage stage;
 
-    public static int WIDTH = GameMain.GAME_WIDTH;
-    public static int HEIGHT = GameMain.GAME_HEIGHT;
+    private final int WIDTH = GameMain.GAME_WIDTH;
+    private final int HEIGHT = GameMain.GAME_HEIGHT;
 
     private final Label stepLabel;
     private final Label timeLabel;
     private int step = 0;
     private Array<Card> cardArray = new Array<>();
-    private boolean isClear = false;
-    private final int maxStep = 22;
+    private final int MAX_STEP = 22;
     private float gameTime = 0;
-    private final float maxGameTime= 60;
-
-    private Table table = new Table();
-    private TextButton textButton;
+    private final float MAX_TIME= 60;
 
     private float waitTime;
 
     private Card lastCard;
     private Card next;
-    boolean waitForClose;
-    boolean gameStart = false;
+    private boolean waitForClose;
+    private boolean gameStart = false;
 
 
     public PuzzleScreen(GameMain game) {
@@ -58,6 +54,7 @@ public class PuzzleScreen extends AbstractScreen {
             cardArray.add(new Card(i, game.assetLoader));
         }
         cardArray.shuffle();
+        Table table = new Table();
         for (final Card card : cardArray) {
             if(cardArray.indexOf(card,true) % 4 ==0){
                 table.row();
@@ -89,7 +86,7 @@ public class PuzzleScreen extends AbstractScreen {
         stepLabel.setX(WIDTH - 230);
         stepLabel.setY(HEIGHT - 200);
 
-        textButton = new TextButton("QUIT", game.assetLoader.uiSkin);
+        TextButton textButton = new TextButton("QUIT", game.assetLoader.uiSkin);
         textButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -141,7 +138,6 @@ public class PuzzleScreen extends AbstractScreen {
                 return;
 
         }
-        isClear = true;
         game.setScreen(game.gameScreen);
         game.gameScreen.getCurrentGameWorld().puzzleSuccess();
     }
@@ -157,8 +153,8 @@ public class PuzzleScreen extends AbstractScreen {
         DecimalFormat df = new DecimalFormat("00");
         if (gameStart){
             gameTime += delta;
-            float timeLeft = maxGameTime - gameTime;
-            if (timeLeft <= 0 || step >= maxStep){
+            float timeLeft = MAX_TIME - gameTime;
+            if (timeLeft <= 0 || step >= MAX_STEP){
                 timeLeft=0;
                 gameStart = false;
                 game.setScreen(game.gameScreen);
