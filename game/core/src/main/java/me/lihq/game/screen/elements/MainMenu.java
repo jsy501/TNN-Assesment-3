@@ -48,16 +48,16 @@ public class MainMenu extends MenuTable
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                game.singlePlayerSelectionScreen = new SinglePlayerSelectionScreen(game);
-                game.setScreen(game.singlePlayerSelectionScreen);
+                game.playerSelectionScreen = new SinglePlayerSelectionScreen(game);
+                game.setScreen(game.playerSelectionScreen);
             }
         });
 
         twoPlayerButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.twoPlayerSelectionScreen = new TwoPlayerSelectionScreen(game);
-                game.setScreen(game.twoPlayerSelectionScreen);
+                game.playerSelectionScreen = new TwoPlayerSelectionScreen(game);
+                game.setScreen(game.playerSelectionScreen);
             }
         });
 

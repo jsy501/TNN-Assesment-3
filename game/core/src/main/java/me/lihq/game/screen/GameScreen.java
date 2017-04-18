@@ -67,4 +67,12 @@ public abstract class GameScreen extends AbstractScreen{
         currentGameWorld.getGameWorldStage().getViewport().update(width, height);
         currentGui.getGuiStage().getViewport().update(width, height);
     }
+
+    public GameWorld getCurrentGameWorld() {
+        return currentGameWorld;
+    }
+
+    public Gui getCurrentGui() {
+        return currentGui;
+    }
 }

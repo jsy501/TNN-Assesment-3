@@ -42,6 +42,10 @@ public class Room
     private Array<Door> entryArray;
     private Array<RoomArrow> roomArrowArray;
     private boolean isMurderRoom = false;
+    private boolean isLocked = false;
+
+    //door that should have a clue glint for player to find
+    private Door exitToSecretRoom;
 
     /**
      * Constructor used for creating the room object
@@ -122,6 +126,12 @@ public class Room
         System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getName());
     }
 
+    public void addSecretDoorClue(Clue doorClue){
+        doorClue.setTilePosition(exitToSecretRoom.getTilePosition().x, exitToSecretRoom.getTilePosition().y);
+
+        clueArray.add(doorClue);
+    }
+
     /**
      * This method adds an npc into the room
      * @param npc - npc to be added
@@ -151,6 +161,14 @@ public class Room
     }
 
     public Array<RoomArrow> getRoomArrowArray(){ return roomArrowArray; }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
 
     private Array<Door> importExit()
     {
@@ -267,6 +285,7 @@ public class Room
             }
             else{
                 exitArray.add(new Door((RectangleMapObject) object));
+                exitToSecretRoom = exitArray.peek();
             }
         }
     }

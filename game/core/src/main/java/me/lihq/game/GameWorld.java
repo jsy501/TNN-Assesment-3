@@ -123,14 +123,20 @@ public class GameWorld {
      * @param roomId id of the room that needs to be changed to.
      */
     public void changeRoom(int roomId) {
-        player.setState(PersonState.STANDING);
+        Room entryRoom = roomManager.getRoom(roomId);
+        if (entryRoom.isLocked()){
+            return;
+        }
+
+        //prevents colliding with doors multiple times during transition
+        player.setCanMove(false);
 
         //actual room transition happens after fade out
         game.fadeInOut.addAction(Actions.sequence(
                 Actions.fadeIn(0.5f),
                 Actions.run(() -> {
                     Room exitRoom = player.getCurrentRoom();
-                    Room entryRoom = roomManager.getRoom(roomId);
+
                     Vector2 entryPosition = new Vector2();
                     Direction entryDirection = player.getDirection();
 
@@ -205,6 +211,19 @@ public class GameWorld {
         conversationManager.clear();
 
         cameraManager.haltInteractionMode();
+    }
+
+    /**
+     * procedure when the player had successfully solved the puzzle for secret room access
+     */
+    public void puzzleSuccess(){
+        gui.displayInfo("A secret door opened!");
+        roomManager.getSecretRoom().setLocked(false);
+        clueManager.getSecretDoorClue().setVisible(false);
+    }
+
+    public void puzzleFail(){
+        gui.displayInfo("Puzzle failed! Try again!");
     }
 
     public void render(float delta){

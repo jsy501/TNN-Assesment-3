@@ -256,5 +256,12 @@
     "description": "An bottle of expensive perfume. It looks about half empty.",
     "relatedNpcId": [7,4,5],
     "clueType": "NORMAL"
+  },
+
+  {
+    "name": "Secret Door",
+    "description": "The bookcase has a fake book. Pull it?",
+    "relatedNpcId": [],
+    "clueType": "SECRET"
   }
 ]

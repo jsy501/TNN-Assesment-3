@@ -20,8 +20,6 @@ import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 
-import me.lihq.game.gui.RoomTag;
-
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
 /**
@@ -64,11 +62,13 @@ public class AssetLoader {
 
     public Skin menuSkin;
     public Skin uiSkin;
-//    public Skin speechSkin;
 
     public JsonValue npcJsonData;
     public JsonValue playerJsonData;
     public JsonValue clueJsonData;
+
+
+    public Array<Texture> cardTextureArray;
 
     /**
      * Constructor to build AssetLoader object
@@ -78,6 +78,8 @@ public class AssetLoader {
         mapArray = new Array<>();
         npcSpriteSheetMapArray = new ArrayMap<>();
         playerSpriteSheetArray = new ArrayMap<>();
+
+        cardTextureArray = new Array<>();
     }
 
     /**
@@ -121,6 +123,14 @@ public class AssetLoader {
         manager.load(ASSET_FOLDER + "people/NPCs/julie.pack", TextureAtlas.class);
         manager.load(ASSET_FOLDER + "people/NPCs/sophie.pack", TextureAtlas.class);
         manager.load(ASSET_FOLDER + "people/NPCs/tom.pack", TextureAtlas.class);
+
+        manager.load(ASSET_FOLDER + "puzzle/1.png", Texture.class);
+        manager.load(ASSET_FOLDER + "puzzle/2.png", Texture.class);
+        manager.load(ASSET_FOLDER + "puzzle/3.png", Texture.class);
+        manager.load(ASSET_FOLDER + "puzzle/4.png", Texture.class);
+        manager.load(ASSET_FOLDER + "puzzle/5.png", Texture.class);
+        manager.load(ASSET_FOLDER + "puzzle/6.png", Texture.class);
+        manager.load(ASSET_FOLDER + "puzzle/qm.png", Texture.class);
 
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         manager.load(ASSET_FOLDER + "maps/computerRoom.tmx",TiledMap.class);
@@ -171,6 +181,15 @@ public class AssetLoader {
         npcSpriteSheetMapArray.put(8, manager.get(ASSET_FOLDER + "people/NPCs/julie.pack"));
         npcSpriteSheetMapArray.put(9, manager.get(ASSET_FOLDER + "people/NPCs/sophie.pack"));
         npcSpriteSheetMapArray.put(10, manager.get(ASSET_FOLDER + "people/NPCs/tom.pack"));
+
+        //puzzle card texture assign
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/1.png"));
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/2.png"));
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/3.png"));
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/4.png"));
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/5.png"));
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/6.png"));
+        cardTextureArray.add(manager.get(ASSET_FOLDER + "puzzle/qm.png"));
 
         // map assign
         mapArray.add(manager.get(ASSET_FOLDER + "maps/computerRoom.tmx"));

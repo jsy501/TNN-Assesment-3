@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import me.lihq.game.GameMain;
+import me.lihq.game.puzzle.PuzzleStartScreen;
 
 /**
  * Splash screen. The game assets are loaded during splash.

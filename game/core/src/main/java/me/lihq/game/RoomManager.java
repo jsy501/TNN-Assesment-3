@@ -15,6 +15,7 @@ public class RoomManager
     private Array<Room> roomArray;
     private Room murderRoom;
     private Room secretRoom;
+    private Room roomWithSecretDoor;
 
     /**
      * Constructs the map
@@ -47,13 +48,14 @@ public class RoomManager
                 roomsWithSecretDoor.add(room);
             }
         }
-        Room forSecretRoom = roomsWithSecretDoor.random();
-        System.out.println("Secret room in " + forSecretRoom.getName());
+        roomWithSecretDoor = roomsWithSecretDoor.random();
+        System.out.println("Secret room in " + roomWithSecretDoor.getName());
 
-        secretRoom.getEntryArray().get(0).setConnectedRoomId(forSecretRoom.getID());
-        secretRoom.getExitArray().get(0).setConnectedRoomId(forSecretRoom.getID());
+        secretRoom.getEntryArray().get(0).setConnectedRoomId(roomWithSecretDoor.getID());
+        secretRoom.getExitArray().get(0).setConnectedRoomId(roomWithSecretDoor.getID());
+        secretRoom.setLocked(true);
 
-        forSecretRoom.addSecretRoomDoor();
+        roomWithSecretDoor.addSecretRoomDoor();
     }
 
     /**
@@ -86,5 +88,13 @@ public class RoomManager
 
     public Room getMurderRoom() {
         return murderRoom;
+    }
+
+    public Room getSecretRoom() {
+        return secretRoom;
+    }
+
+    public Room getRoomWithSecretDoor() {
+        return roomWithSecretDoor;
     }
 }

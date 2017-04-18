@@ -28,8 +28,8 @@ public class TwoPlayerSelectionScreen extends PlayerSelectionScreen{
                     }
                     else{
                         playerTwo = (Player) selectedPlayerSlot.getSlotActor();
-                        game.twoPlayerGameScreen = new TwoPlayerGameScreen(game, playerOne, playerTwo);
-                        game.setScreen(game.twoPlayerGameScreen);
+                        game.gameScreen = new TwoPlayerGameScreen(game, playerOne, playerTwo);
+                        game.setScreen(game.gameScreen);
                     }
                 }
                 else {

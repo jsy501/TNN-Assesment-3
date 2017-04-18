@@ -9,10 +9,7 @@ import me.lihq.game.Collidable;
 import me.lihq.game.GameWorld;
 import me.lihq.game.Interaction;
 import me.lihq.game.PersonalityMeter;
-import me.lihq.game.models.Clue;
-import me.lihq.game.models.Door;
-import me.lihq.game.models.Inventory;
-import me.lihq.game.models.RoomArrow;
+import me.lihq.game.models.*;
 
 /**
  * EXTENDED
@@ -108,12 +105,17 @@ public class Player extends AbstractPerson {
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
             if (foundClue.isVisible() && stamina.action()){
-                foundClue.setVisible(false);
-                inventory.addClue(foundClue);
-                gameWorld.getScore().addPoints(100);
+                if (foundClue.getClueType() == ClueType.SECRET){
+                    gameWorld.getGui().displayPrompt(foundClue.getDescription());
+                }
+                else {
+                    foundClue.setVisible(false);
+                    inventory.addClue(foundClue);
+                    gameWorld.getScore().addPoints(100);
 
-                gameWorld.getGui().displayInfo(foundClue.getDescription());
-                System.out.println(((Clue)interactingActor).getName());
+                    gameWorld.getGui().displayInfo(foundClue.getDescription());
+                    System.out.println(foundClue.getName());
+                }
             }
         }
     }
@@ -139,8 +141,6 @@ public class Player extends AbstractPerson {
         if (isCanMove()) {
             Door collidingExit = doorCollisionDetection(collisionBox);
             if (collidingExit != null) {
-                //prevents colliding with doors multiple times during transition
-                setCanMove(false);
                 gameWorld.changeRoom(collidingExit.getConnectedRoomId());
             }
         }

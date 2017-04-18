@@ -24,6 +24,7 @@ public class ClueManager {
     private Array<Clue> relevantNormalClueArray;
     private Clue weaponClue;
     private Clue motiveClue;
+    private Clue secretDoorClue;
 
     public ClueManager(NpcManager npcManager, RoomManager roomManager, AssetLoader assetLoader){
         relevantNormalClueArray = new Array<>();
@@ -52,6 +53,10 @@ public class ClueManager {
             }
             else if (clue.getClueType() == ClueType.MOTIVE && clue.getRelatedNpcIdArray().contains(npcManager.getMurderer().getId(), true)){
                 motiveClue = clue;
+            }
+
+            else if (clue.getClueType() == ClueType.SECRET){
+                secretDoorClue = clue;
             }
         }
 
@@ -96,6 +101,8 @@ public class ClueManager {
 
         roomManager.getMurderRoom().addClue(motiveClue);
 
+        roomManager.getRoomWithSecretDoor().addSecretDoorClue(secretDoorClue);
+
         instance = this;
     }
 
@@ -109,5 +116,9 @@ public class ClueManager {
 
     public Clue getMotiveClue() {
         return motiveClue;
+    }
+
+    public Clue getSecretDoorClue() {
+        return secretDoorClue;
     }
 }

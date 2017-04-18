@@ -34,8 +34,8 @@ public class SinglePlayerSelectionScreen extends PlayerSelectionScreen {
             protected void result(Object object) {
                 if (object.equals(true)){
                     playerOne = (Player) selectedPlayerSlot.getSlotActor();
-                    game.singlePlayerGameScreen = new SinglePlayerGameScreen(game, playerOne);
-                    game.setScreen(game.singlePlayerGameScreen);
+                    game.gameScreen = new SinglePlayerGameScreen(game, playerOne);
+                    game.setScreen(game.gameScreen);
                 }
                 else {
                     hide();

@@ -36,10 +36,9 @@ public class GameMain extends Game
 
     public MainMenuScreen mainMenuScreen;
     public PauseScreen pauseScreen;
-    public SinglePlayerGameScreen singlePlayerGameScreen;
-    public TwoPlayerGameScreen twoPlayerGameScreen;
-    public SinglePlayerSelectionScreen singlePlayerSelectionScreen;
-    public TwoPlayerSelectionScreen twoPlayerSelectionScreen;
+
+    public GameScreen gameScreen;
+    public PlayerSelectionScreen playerSelectionScreen;
 
     /**
      * used for screen transition effect

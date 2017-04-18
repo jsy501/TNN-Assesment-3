@@ -16,12 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
-import me.lihq.game.gui.windows.AccuseWindow;
-import me.lihq.game.gui.windows.InfoWindow;
-import me.lihq.game.gui.windows.InventoryWindow;
-import me.lihq.game.gui.windows.NpcNoteWindow;
-import me.lihq.game.gui.windows.PersonalityMeterWindow;
-import me.lihq.game.gui.windows.ClueSelectionWindow;
+import me.lihq.game.gui.windows.*;
 import me.lihq.game.models.Room;
 import me.lihq.game.Score;
 
@@ -42,6 +37,7 @@ public class Gui {
 
     // all of the gui windows in the game
     private InfoWindow infoWindow;
+    private PromptWindow promptWindow;
     private InventoryWindow inventoryWindow;
     private PersonalityMeterWindow personalityMeterWindow;
     private NpcNoteWindow npcNoteWindow;
@@ -101,6 +97,7 @@ public class Gui {
             }
         });
 
+        promptWindow = new PromptWindow(game.assetLoader.uiSkin, this, gameWorld);
         inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
         personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
         npcNoteWindow = new NpcNoteWindow(game.assetLoader.uiSkin, this, gameWorld);
@@ -148,6 +145,18 @@ public class Gui {
         infoLabel.setAlignment(Align.center);
         infoWindow.getContentTable().add(infoLabel).width(500);
         infoWindow.show(guiStage);
+    }
+
+    /**
+     * Show a pop up prompt window for mini puzzle opening secret door
+     */
+    public void displayPrompt(String text){
+        promptWindow.getContentTable().clearChildren();
+        Label infoLabel = new Label(text, infoWindow.getSkin(), "dialog");
+        infoLabel.setWrap(true);
+        infoLabel.setAlignment(Align.center);
+        promptWindow.getContentTable().add(infoLabel).width(500);
+        promptWindow.show(guiStage);
     }
 
     public void render(float delta){
