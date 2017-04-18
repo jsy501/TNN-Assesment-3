@@ -6,6 +6,7 @@ import me.lihq.game.gui.Gui;
 import me.lihq.game.puzzle.PuzzleStartScreen;
 
 /**
+ * NEW
  * Window that displays yes/no prompt window for mini game for secret room and get user response
  */
 

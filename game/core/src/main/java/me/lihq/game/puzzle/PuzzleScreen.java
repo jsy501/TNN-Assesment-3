@@ -80,27 +80,16 @@ public class PuzzleScreen extends AbstractScreen {
         table.align(Align.topLeft);
         stage.addActor(table);
 
-        Skin skin = new Skin(
-                Gdx.files.internal("assets/skin/skin.json"),
-                new TextureAtlas(Gdx.files.internal("assets/skin/skin.atlas"))
-        );
-
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("assets/fonts/calibri.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter p = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        p.size = 24;
-        BitmapFont font = generator.generateFont(p);
-        generator.dispose();
-
-        timeLabel = new Label("Time Left: 60", new Label.LabelStyle(font, Color.WHITE));
+        timeLabel = new Label("Time Left: 60", game.assetLoader.uiSkin, "big");
         timeLabel.setX(WIDTH - 230);
         timeLabel.setY(HEIGHT - 400);
         stage.addActor(timeLabel);
 
-        stepLabel = new Label("Step: 0", new Label.LabelStyle(font, Color.WHITE));
+        stepLabel = new Label("Step: 0", game.assetLoader.uiSkin, "big");
         stepLabel.setX(WIDTH - 230);
         stepLabel.setY(HEIGHT - 200);
 
-        textButton = new TextButton("QUIT", skin);
+        textButton = new TextButton("QUIT", game.assetLoader.uiSkin);
         textButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -108,7 +97,6 @@ public class PuzzleScreen extends AbstractScreen {
                 game.setScreen(game.gameScreen);
             }
         });
-        textButton.getStyle().font = font;
         textButton.setX(WIDTH  - 230);
         textButton.setY(HEIGHT - 600);
 
@@ -156,10 +144,6 @@ public class PuzzleScreen extends AbstractScreen {
         isClear = true;
         game.setScreen(game.gameScreen);
         game.gameScreen.getCurrentGameWorld().puzzleSuccess();
-    }
-
-    public boolean checkClear (){
-        return isClear;
     }
 
     @Override

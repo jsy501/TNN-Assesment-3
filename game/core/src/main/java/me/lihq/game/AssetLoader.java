@@ -100,7 +100,6 @@ public class AssetLoader {
      * loads in game assets into manager
      */
     public void loadGameAssets(){
-        manager.load(ASSET_FOLDER + "skin/uiskin.json", Skin.class);
         manager.load(ASSET_FOLDER + "skin/comic-ui.json", Skin.class);
 
         manager.load(ASSET_FOLDER + "arrows.pack", TextureAtlas.class);
