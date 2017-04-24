@@ -70,4 +70,13 @@ public class Stamina {
     public float getCurrentStamina(){
         return currentStamina;
     }
+
+    /**
+     * Code below is for tests only.
+     */
+
+    public void setCurrentStamina(float newStamina){currentStamina = newStamina;}
+
+    public boolean checkEnabled(){return isEnabled;}
+
 }
