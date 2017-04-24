@@ -24,6 +24,14 @@ public class Card extends Image {
         faceDownImage = (TextureRegionDrawable) getDrawable();
     }
 
+    /** Test constructor start*/
+    public Card(int uid){
+        this.uid = uid;
+        this.isFlip = false;
+    }
+    /** Test constructor end*/
+
+
     /**
      * isMatch method test if the clicked card matches with previous card.
      */
@@ -54,4 +62,5 @@ public class Card extends Image {
     public boolean isFlip() {
         return isFlip;
     }
+
 }
