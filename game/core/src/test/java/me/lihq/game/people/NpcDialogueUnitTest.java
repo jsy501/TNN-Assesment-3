@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Tunc on 24/04/2017.
  */
-public class NpcDialogueUnitTest {
+public class NpcDialogueUnitTest extends GameTester {
     private Npc testNpc;
     private NpcDialogue testDialogue;
 
