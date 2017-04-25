@@ -31,9 +31,9 @@ public class PuzzleScreen extends AbstractScreen {
 
     private final Label stepLabel;
     private final Label timeLabel;
-    private int step = 0;
     private Array<Card> cardArray = new Array<>();
-    private final int MAX_STEP = 22;
+    private final int MAX_STEP = 20;
+    private int step = MAX_STEP * 2;
     private float gameTime = 0;
     private final float MAX_TIME= 60;
 
@@ -82,7 +82,7 @@ public class PuzzleScreen extends AbstractScreen {
         timeLabel.setY(HEIGHT - 400);
         stage.addActor(timeLabel);
 
-        stepLabel = new Label("Step: 0", game.assetLoader.uiSkin, "big");
+        stepLabel = new Label("Step left: " + MAX_STEP, game.assetLoader.uiSkin, "big");
         stepLabel.setX(WIDTH - 230);
         stepLabel.setY(HEIGHT - 200);
 
@@ -114,8 +114,8 @@ public class PuzzleScreen extends AbstractScreen {
         if (waitForClose || card == lastCard || card == next || card.isFlip())
             return;
 
-        step++;
-        stepLabel.setText("Step: " + step);
+        step--;
+        stepLabel.setText("Step left: " + step / 2);
 
         if (lastCard == null){
             card.setFlip(true);
@@ -154,7 +154,7 @@ public class PuzzleScreen extends AbstractScreen {
         if (gameStart){
             gameTime += delta;
             float timeLeft = MAX_TIME - gameTime;
-            if (timeLeft <= 0 || step >= MAX_STEP){
+            if (timeLeft <= 0 || step < 0){
                 timeLeft=0;
                 gameStart = false;
                 game.setScreen(game.gameScreen);

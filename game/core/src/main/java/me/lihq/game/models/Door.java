@@ -87,6 +87,11 @@ public class Door extends Actor implements Collidable, TileObject{
     }
 
     @Override
+    public void setTilePosition(Vector2Int tilePosition) {
+        this.tilePosition = tilePosition;
+    }
+
+    @Override
     public Vector2Int getTilePosition() {
         return tilePosition;
     }

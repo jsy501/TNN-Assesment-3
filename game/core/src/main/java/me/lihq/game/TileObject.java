@@ -17,6 +17,8 @@ public interface TileObject {
 
     void setTilePosition(int x, int y);
 
+    void setTilePosition(Vector2Int tilePosition);
+
     /**
      * This method gets the object's current tile location on the map as a Vector2Int
      *

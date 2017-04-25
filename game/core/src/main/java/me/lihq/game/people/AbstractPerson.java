@@ -31,7 +31,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
      * SPRITE_WIDTH - The width of the texture region for each person
      * canMove - A boolean value defining whether the person can move or not. It's main use is to not allow characters to move during room transition or conversations
      * isInConversation - A boolean value defining whether the person is in a conversation or not
-     * MOVE_SPEED - defines the speed at which people will move
+     * moveSpeed - defines the speed at which people will move
      * tilePosition - This is the location of the person in the room in terms of tiles eg (0,0) would be the bottom left of the room.
      *                Uses the Vector2Int as the tilePosition should never be floats as the person should only be between tiles during the move process.
      * animStateTime - defines the animations current state in terms of time
@@ -51,7 +51,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     private boolean canMove = true;
 
-    private final float MOVE_SPEED = 150f;
+    private float moveSpeed = 150f;
 
     protected Vector2Int tilePosition = new Vector2Int(0, 0);
 
@@ -168,8 +168,8 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
             animStateTime += delta;
 
             // the distance the character will move if there is no collision
-            vectorDistanceX = direction.getDx() * MOVE_SPEED * delta;
-            vectorDistanceY = direction.getDy() * MOVE_SPEED * delta;
+            vectorDistanceX = direction.getDx() * moveSpeed * delta;
+            vectorDistanceY = direction.getDy() * moveSpeed * delta;
             collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
 
             // if there is any collision the distance it will move that frame will be 0
@@ -230,6 +230,14 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
         setPosition(x * Settings.TILE_SIZE, y * Settings.TILE_SIZE);
     }
 
+    @Override
+    public void setTilePosition(Vector2Int tilePosition) {
+        this.tilePosition = tilePosition;
+
+        //screen position in pixels
+        setPosition(tilePosition.x * Settings.TILE_SIZE, tilePosition.x * Settings.TILE_SIZE);
+    }
+
     public JsonValue getJsonData() {
         return jsonData;
     }
@@ -276,6 +284,14 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
             vectorDistanceX = 0;
             vectorDistanceY = 0;
         }
+    }
+
+    public float getMoveSpeed() {
+        return moveSpeed;
+    }
+
+    public void setMoveSpeed(float moveSpeed) {
+        this.moveSpeed = moveSpeed;
     }
 
     public Vector2Int getTilePosition() {

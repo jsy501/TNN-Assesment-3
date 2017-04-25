@@ -132,6 +132,17 @@ public class Clue extends Actor implements Collidable, TileObject {
     }
 
     @Override
+    public void setTilePosition(Vector2Int coordinates) {
+        tileCoordinates.x = coordinates.x;
+        tileCoordinates.y = coordinates.y;
+
+        setPosition(getTilePosition().x * Settings.TILE_SIZE,
+                getTilePosition().y * Settings.TILE_SIZE);
+
+        collisionBox.setPosition(getX(), getY());
+    }
+
+    @Override
     public void act(float delta) {
         animStateTime += delta;
     }

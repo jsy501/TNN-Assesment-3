@@ -11,6 +11,7 @@ import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
 /**
+ * EXTENDED
  * Clue manager handles creating and assigning clues to rooms
  */
 public class ClueManager {
@@ -25,6 +26,7 @@ public class ClueManager {
     private Clue weaponClue;
     private Clue motiveClue;
     private Clue secretDoorClue;
+    private Clue secretItemClue;
 
     public ClueManager(NpcManager npcManager, RoomManager roomManager, AssetLoader assetLoader){
         relevantNormalClueArray = new Array<>();
@@ -57,6 +59,10 @@ public class ClueManager {
 
             else if (clue.getClueType() == ClueType.SECRET){
                 secretDoorClue = clue;
+            }
+
+            else if (clue.getClueType() == ClueType.ITEM){
+                secretItemClue = clue;
             }
         }
 
@@ -91,7 +97,7 @@ public class ClueManager {
             Vector2Int randHidingSpot = possibleHidingSpots.pop();
 
             Clue clue = cluesToBeDistributed.pop();
-            clue.setTilePosition(randHidingSpot.x, randHidingSpot.y);
+            clue.setTilePosition(randHidingSpot);
             room.addClue(clue);
 
             if (cluesToBeDistributed.size == 0){
@@ -101,7 +107,12 @@ public class ClueManager {
 
         roomManager.getMurderRoom().addClue(motiveClue);
 
+        //add secret room entrance clue
         roomManager.getRoomWithSecretDoor().addSecretDoorClue(secretDoorClue);
+
+        //add secret room item
+        secretItemClue.setTilePosition(roomManager.getSecretRoom().getHidingSpots().random());
+        roomManager.getSecretRoom().addClue(secretItemClue);
 
         instance = this;
     }
