@@ -104,10 +104,23 @@ public class Player extends AbstractPerson {
         // if it is a clue, add the clue to the inventory
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
+            //when the clue is visible and the player has enough stamina
             if (foundClue.isVisible() && stamina.action()){
+                //when player finds the secret door clue
                 if (foundClue.getClueType() == ClueType.SECRET){
                     gameWorld.getGui().displayPrompt(foundClue.getDescription());
                 }
+
+                //when player finds the bonus item
+                else if (foundClue.getClueType() == ClueType.ITEM){
+                    foundClue.setVisible(false);
+                    gameWorld.getScore().addPoints(200);
+                    gameWorld.getGui().displayInfo(foundClue.getDescription());
+
+                    stamina.setCostFactor(0.5f); // action cost reduced by 50%
+                    setMoveSpeed(getMoveSpeed() * 1.2f); // move speed increase by 20%
+                }
+
                 else {
                     foundClue.setVisible(false);
                     inventory.addClue(foundClue);

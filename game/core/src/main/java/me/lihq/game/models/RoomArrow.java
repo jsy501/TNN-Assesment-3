@@ -100,6 +100,13 @@ public class RoomArrow extends Actor implements TileObject, Collidable {
     }
 
     @Override
+    public void setTilePosition(Vector2Int tilePosition) {
+        this.tilePosition = tilePosition;
+
+        setPosition(tilePosition.x * Settings.TILE_SIZE, tilePosition.y * Settings.TILE_SIZE);
+    }
+
+    @Override
     public Vector2Int getTilePosition() {
         return tilePosition;
     }

@@ -263,5 +263,12 @@
     "description": "The bookcase has a fake book. Pull it?",
     "relatedNpcId": [],
     "clueType": "SECRET"
+  },
+
+  {
+    "name": "Trainers",
+    "description": "A pair of trainers that looks very comfy",
+    "relatedNpcId": [],
+    "clueType": "ITEM"
   }
 ]

@@ -13,6 +13,7 @@ public class Stamina {
     private final float ACTION_COST = 20f;
     private final float MOVE_COST = 1f;    //cost per tile move
 
+    private float costFactor = 1;
     private float currentStamina;
     private boolean isEnabled = false;
     private boolean isDepleted = false;
@@ -23,8 +24,8 @@ public class Stamina {
 
     public void move(float distanceX, float distanceY){
         if (isEnabled) {
-            currentStamina -= Math.abs(distanceX) * (MOVE_COST / Settings.TILE_SIZE);
-            currentStamina -= Math.abs(distanceY) * (MOVE_COST / Settings.TILE_SIZE);
+            currentStamina -= Math.abs(distanceX) * (MOVE_COST / Settings.TILE_SIZE) * costFactor;
+            currentStamina -= Math.abs(distanceY) * (MOVE_COST / Settings.TILE_SIZE) * costFactor;
             if (currentStamina < 0) {
                 isDepleted = true;
             }
@@ -42,7 +43,7 @@ public class Stamina {
         }
 
         if (currentStamina > ACTION_COST) {
-            currentStamina -= ACTION_COST;
+            currentStamina -= ACTION_COST * costFactor;
             return true;
         }
 
@@ -69,6 +70,10 @@ public class Stamina {
 
     public float getCurrentStamina(){
         return currentStamina;
+    }
+
+    public void setCostFactor(float newCostFactor){
+        costFactor = newCostFactor;
     }
 
     /**
