@@ -10,7 +10,14 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import me.lihq.game.GameMain;
 import me.lihq.game.screen.AbstractScreen;
 
+/**
+ * The PuzzleStartScreen holds the GUI of the start menu.
+ */
+
 public class PuzzleStartScreen extends AbstractScreen {
+    /**
+     *  Puzzle start menu elements of Start screen.
+     */
     private Stage stage;
 
     private final String rule =
@@ -27,6 +34,12 @@ public class PuzzleStartScreen extends AbstractScreen {
             "Each time you click on card will be counted as one step. \n" +
             "Remember you only have limited time and steps \n" + "to finish this puzzle.\n\n" +
             "Good Luck!";
+
+    /**
+     * The constructor initialised all elements need for the start screen.
+     * Table is used to display textButton and label in the right place.
+     * @param game this provides access to the gameMain class so that screens can set the states of the game.
+     */
 
     public PuzzleStartScreen(GameMain game){
         super(game);

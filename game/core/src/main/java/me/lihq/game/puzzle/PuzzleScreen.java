@@ -24,6 +24,22 @@ import me.lihq.game.screen.AbstractScreen;
 import java.text.DecimalFormat;
 
 public class PuzzleScreen extends AbstractScreen {
+    /**
+     * Parameters needed for PuzzleScreen:
+     *
+     * stepLabel - show the record of step
+     * timeLabel - show the record of time left.
+     * step - int used to calculate the steps
+     * cardArray - to initialise the card that need to display in the puzzle
+     * MAX_STEP - the max step the player can take to finished the puzzle
+     * gameTime - record the time after the player start the game
+     * MAX_TIME - the max time the player can take to finished puzzle
+     * waitTime - time wait for card to close
+     * lastCard - Each time two card will be clicked and checked. Last Card records the first clicked card
+     * next - next records the second clicked card
+     * waitForClose - if the card is flipped, check whether it need to be cloesd
+     * gameStart - boolean show whether the puzzle is started
+     */
     private Stage stage;
 
     private final int WIDTH = GameMain.GAME_WIDTH;
@@ -46,6 +62,10 @@ public class PuzzleScreen extends AbstractScreen {
 
 
     public PuzzleScreen(GameMain game) {
+        /**
+         * Initialise the GUI of Puzzle game, and add ClickListener to the card.
+         * Game only starts after the player click a card for the first time
+         */
         super(game);
         stage = new Stage(new FitViewport(WIDTH, HEIGHT));
 
@@ -150,6 +170,10 @@ public class PuzzleScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
+        /**
+         * Time is calculated each time of render
+         * Wait for closed is checked every time of render
+         */
         DecimalFormat df = new DecimalFormat("00");
         if (gameStart){
             gameTime += delta;
