@@ -94,7 +94,6 @@ public class SplashScreen extends AbstractScreen{
                 Actions.delay(2.5f),
                 Actions.fadeIn(0.5f),
                 Actions.delay(2f),
-                Actions.fadeOut(0.5f),
                 Actions.run(() -> {
                     System.out.println("action");
                     game.assetLoader.assignGameAssets();

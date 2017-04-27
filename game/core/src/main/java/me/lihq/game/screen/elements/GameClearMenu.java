@@ -25,11 +25,11 @@ public class GameClearMenu extends MenuTable{
      * @param game  - The game object the menu is being loaded for
      */
     public GameClearMenu(GameMain game, GameWorld gameWorld) {
-        super(game.assetLoader.menuSkin, "GAME CLEAR!");
+        super(game.assetLoader.uiSkin, "GAME CLEAR!");
 
-        TextButton mainMenu = new TextButton("Main Menu", menuSkin);
+        TextButton mainMenu = new TextButton("Main Menu", menuSkin, "menu");
 
-        TextButton quit = new TextButton("Quit", menuSkin);
+        TextButton quit = new TextButton("Quit", menuSkin, "menu");
 
         int totalTime = (int) gameWorld.getTime().getTotalTime();
 
@@ -37,9 +37,9 @@ public class GameClearMenu extends MenuTable{
         String timeString = String.valueOf(totalTime/60) + ":" + String.valueOf(totalTime%60);
 
         int totalScore = gameWorld.getScore().getFinalScore(totalTime);
-        Label timeLabel = new Label("Time taken: " + timeString, menuSkin, "default", Color.WHITE);
-        Label scoreLabel = new Label("Score: " + totalScore, menuSkin, "default", Color.WHITE);
-        Label highScoreLabel = new Label("New Highscore!", menuSkin, "default", Color.RED);
+        Label timeLabel = new Label("Time taken: " + timeString, menuSkin, "title", Color.WHITE);
+        Label scoreLabel = new Label("Score: " + totalScore, menuSkin, "title", Color.WHITE);
+        Label highScoreLabel = new Label("New Highscore!", menuSkin, "title", Color.RED);
 
         contentTable.add(timeLabel).row();
         contentTable.add(scoreLabel).row();

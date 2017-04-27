@@ -26,15 +26,16 @@ public class MainMenu extends MenuTable
      * @param game - The game object the menu is being loaded for
      */
     public MainMenu(GameMain game) {
-        super(game.assetLoader.menuSkin, "Murder Mystery Game!");
+        super(game.assetLoader.uiSkin, game.assetLoader.titleImage);
 
-        TextButton singlePlayerButton = new TextButton("Single Player", menuSkin);
+//        debug();
+        TextButton singlePlayerButton = new TextButton("Single Player", menuSkin, "menu");
 
-        TextButton twoPlayerButton = new TextButton("Two Player", menuSkin);
+        TextButton twoPlayerButton = new TextButton("Two Player", menuSkin, "menu");
 
-        TextButton quit = new TextButton("Quit", menuSkin);
+        TextButton quit = new TextButton("Quit", menuSkin, "menu");
 
-        Label highScoreLabel = new Label("High score: " + Gdx.app.getPreferences("pref").getInteger("highScore", 0), menuSkin, "default", Color.RED);
+        Label highScoreLabel = new Label("High score: " + Gdx.app.getPreferences("pref").getInteger("highScore", 0), menuSkin, "title", Color.RED);
         contentTable.add(highScoreLabel);
 
         //Loading the buttons onto the stage

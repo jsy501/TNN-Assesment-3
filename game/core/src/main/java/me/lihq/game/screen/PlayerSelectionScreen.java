@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
@@ -85,7 +86,9 @@ public abstract class PlayerSelectionScreen extends AbstractScreen {
                     selectedPlayerSlot = playerSlot;
 
                     selectionConfirmWindow.getContentTable().clear();
-                    selectionConfirmWindow.text(player.getDescription());
+                    Label text = new Label(player.getDescription(), game.assetLoader.uiSkin, "big-black");
+                    text.setWrap(true);
+                    selectionConfirmWindow.getContentTable().add(text).width(800);
                     selectionConfirmWindow.show(stage);
                 }
             });

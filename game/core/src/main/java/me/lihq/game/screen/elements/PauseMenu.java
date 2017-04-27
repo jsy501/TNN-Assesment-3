@@ -22,13 +22,13 @@ public class PauseMenu extends MenuTable{
      * @param game - The game object the menu is being loaded for
      */
     public PauseMenu(GameMain game, AbstractScreen gameScreen) {
-        super(game.assetLoader.menuSkin, "PAUSE");
+        super(game.assetLoader.uiSkin, "PAUSE");
 
-        TextButton resumeButton = new TextButton("Resume", menuSkin);
+        TextButton resumeButton = new TextButton("Resume", menuSkin, "menu");
 
-        TextButton mainMenu = new TextButton("Main Menu", menuSkin);
+        TextButton mainMenu = new TextButton("Main Menu", menuSkin, "menu");
 
-        TextButton quit = new TextButton("Quit", menuSkin);
+        TextButton quit = new TextButton("Quit", menuSkin, "menu");
 
         //Loading the buttons onto the stage
 

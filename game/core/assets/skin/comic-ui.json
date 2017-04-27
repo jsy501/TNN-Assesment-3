@@ -83,6 +83,18 @@ com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 		font: button
 		fontColor: white
 	}
+
+	big-black: {
+		font: button
+		fontColor: black
+	}
+
+	menu-title: {
+		font: title
+		fontColor: gray
+		background: text-field
+	}
+
 	title: {
 		font: title
 		fontColor: white
@@ -183,6 +195,14 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 		up: half-tone-box
 		down: window
 		over: narration-box
+	}
+
+	menu: {
+		font: button
+		fontColor: black
+		up: button
+		down: button-pressed
+		over: button-highlighted
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {

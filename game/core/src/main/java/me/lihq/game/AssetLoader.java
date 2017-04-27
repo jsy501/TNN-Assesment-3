@@ -46,6 +46,8 @@ public class AssetLoader {
     public TextureAtlas loremIpsomSplash;
     public Texture teamNoNameSplash;
 
+    public Texture titleImage;
+
     public TextureAtlas arrowAtlas;
 
     public ArrayMap<Integer, TextureAtlas> playerSpriteSheetArray;
@@ -60,7 +62,6 @@ public class AssetLoader {
 
     public TextureAtlas clueGlint;
 
-    public Skin menuSkin;
     public Skin uiSkin;
 
     public JsonValue npcJsonData;
@@ -102,6 +103,8 @@ public class AssetLoader {
      * loads in game assets into manager
      */
     public void loadGameAssets(){
+        manager.load(ASSET_FOLDER + "titleImage.png", Texture.class);
+
         manager.load(ASSET_FOLDER + "skin/comic-ui.json", Skin.class);
 
         manager.load(ASSET_FOLDER + "arrows.pack", TextureAtlas.class);
@@ -152,6 +155,8 @@ public class AssetLoader {
      */
     public void assignGameAssets()
     {
+        titleImage = manager.get(ASSET_FOLDER + "titleImage.png");
+
         //roomTagFont init
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(ASSET_FOLDER + "fonts/VT323-Regular.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -227,31 +232,6 @@ public class AssetLoader {
      */
     private void initSkin()
     {
-        menuSkin = new Skin();
-
-        BitmapFont titleFont = getFontWithSize(70);
-        menuSkin.add("title", titleFont);
-
-        BitmapFont menuFont = getFontWithSize(60);
-        menuSkin.add("default", menuFont);
-
-        //Create a background for text buttons
-        Pixmap pixmap = new Pixmap(1,1,Pixmap.Format.RGB888);
-        pixmap.setColor(Color.ORANGE);
-        pixmap.fill();
-        menuSkin.add("background", new Texture(pixmap));
-        pixmap.dispose();
-
-        //Create a button style for main menu and pause menu
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.up = menuSkin.newDrawable("background", Color.GRAY);
-        textButtonStyle.down = menuSkin.newDrawable("background", Color.DARK_GRAY);
-        textButtonStyle.checked = menuSkin.newDrawable("background", Color.GRAY);
-        textButtonStyle.over = menuSkin.newDrawable("background", Color.LIGHT_GRAY);
-        textButtonStyle.font = menuSkin.getFont("default");
-        menuSkin.add("default", textButtonStyle);
-
-
         //used in InfoWindow class
         Label.LabelStyle infoStyle = new Label.LabelStyle(getFontWithSize(30), Color.BLACK);
         uiSkin.add("dialog", infoStyle);
