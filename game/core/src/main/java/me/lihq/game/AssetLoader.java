@@ -31,7 +31,6 @@ public class AssetLoader {
      * Parameters needed for AssetLoader object:
      *
      * manager - a LibGDX AssetManager object used to manage assets
-     * splash - The 2 seperate frames for the splash screen
      * arrowAtlas -  These TextureRegions store the 4 different directions that the room changing arrows can face.
      * playerSpriteSheetArray, npcSpriteSheetMapArray - Sprite sheets for abstract person objects
      * mapArray - map Data
@@ -44,7 +43,8 @@ public class AssetLoader {
      */
     private AssetManager manager;
 
-    public TextureAtlas splash;
+    public TextureAtlas loremIpsomSplash;
+    public Texture teamNoNameSplash;
 
     public TextureAtlas arrowAtlas;
 
@@ -86,14 +86,16 @@ public class AssetLoader {
      * loads asset into manager for the splash screen
      */
     public void loadSplashAssets(){
-        manager.load(ASSET_FOLDER + "splash.pack",TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "loremIpsomSplash.pack",TextureAtlas.class);
+        manager.load(ASSET_FOLDER + "teamNoNameSplash.png",Texture.class);
     }
 
     /**
      * retrieves asset from manager for the splash screen
      */
     public void assignSplashAssets(){
-        splash = manager.get(ASSET_FOLDER + "splash.pack");
+        loremIpsomSplash = manager.get(ASSET_FOLDER + "loremIpsomSplash.pack");
+        teamNoNameSplash = manager.get(ASSET_FOLDER + "teamNoNameSplash.png");
     }
 
     /**
