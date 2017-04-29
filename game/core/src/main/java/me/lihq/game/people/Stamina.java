@@ -13,7 +13,7 @@ public class Stamina {
     private final float ACTION_COST = 20f;
     private final float MOVE_COST = 1f;    //cost per tile move
 
-    private float costFactor = 1;
+    private float costFactor = 1; // the factor of cost to be spent
     private float currentStamina;
     private boolean isEnabled = false;
     private boolean isDepleted = false;
@@ -21,6 +21,12 @@ public class Stamina {
     public Stamina(){
         currentStamina = DEFAULT_MAX;
     }
+
+    /**
+     * Spend stamina depending on the distance the player moved
+     * @param distanceX distance moved in x direction
+     * @param distanceY distance moved in y direction
+     */
 
     public void move(float distanceX, float distanceY){
         if (isEnabled) {

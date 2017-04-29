@@ -33,6 +33,10 @@ import me.lihq.game.screen.GameClearScreen;
 public class GameWorld {
     public GameMain game;
     private Gui gui;
+
+    /**
+     * ADDED FIELDS
+     */
     private Time time;
     private Score score;
 
@@ -84,8 +88,6 @@ public class GameWorld {
         cameraManager = new CameraManager((OrthographicCamera) gameWorldStage.getCamera(), player);
 
         characterGroup = new Group();
-        //name is set so it can be found from stage root
-        characterGroup.setName("characterGroup");
         clueGroup = new Group();
         roomArrowGroup = new Group();
 
@@ -213,6 +215,10 @@ public class GameWorld {
         cameraManager.haltInteractionMode();
     }
 
+    /*
+    EXTENDED CODE START
+     */
+
     /**
      * procedure when the player had successfully solved the puzzle for secret room access
      */
@@ -225,6 +231,10 @@ public class GameWorld {
     public void puzzleFail(){
         gui.displayInfo("Puzzle failed! Try again!");
     }
+
+    /*
+    EXTENDED CODE END
+     */
 
     public void render(float delta){
         if (conversationManager.isFinished()){

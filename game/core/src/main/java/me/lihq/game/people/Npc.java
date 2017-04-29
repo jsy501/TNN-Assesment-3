@@ -36,9 +36,7 @@ public class Npc extends AbstractPerson {
     private Personality personality;
 
     private float randomTimeLimit = 0;
-
     private float randomTimeSum = 0;
-
     private boolean randomMoveToggle = false;
 
     /**
@@ -88,9 +86,6 @@ public class Npc extends AbstractPerson {
         super.act(delta);
     }
 
-    /**
-     * Getters and setters needed.
-     */
     private Direction getRandomDirection(){
         int randomInt = MathUtils.random(3);
         switch (randomInt){
@@ -105,6 +100,10 @@ public class Npc extends AbstractPerson {
         }
         return null;
     }
+
+    /**
+     * Getters and setters needed.
+     */
 
     public boolean isKiller()
     {

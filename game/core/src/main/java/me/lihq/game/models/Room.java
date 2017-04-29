@@ -42,9 +42,13 @@ public class Room
     private Array<Door> entryArray;
     private Array<RoomArrow> roomArrowArray;
     private boolean isMurderRoom = false;
-    private boolean isLocked = false;
 
-    //door that should have a clue glint for player to find
+    /**
+     * NEW FIELDS
+     */
+    //new boolean field for locking secret room
+    private boolean isLocked = false;
+    //door that leads to the secret room and should have a clue glint for player to find
     private Door exitToSecretRoom;
 
     /**
@@ -124,12 +128,6 @@ public class Room
         }
 
         System.out.println("Added Clue " + newClue.getName() + " at location " + newClue.getTilePosition() + " in room " + getName());
-    }
-
-    public void addSecretDoorClue(Clue doorClue){
-        doorClue.setTilePosition(exitToSecretRoom.getTilePosition().x, exitToSecretRoom.getTilePosition().y);
-
-        clueArray.add(doorClue);
     }
 
     /**
@@ -273,10 +271,24 @@ public class Room
         return spots;
     }
 
-    /**
-     * adds door to the secret room
+    /*
+    EXTENDED CODE START
      */
-    public void addSecretRoomDoor(){
+
+    /**
+     * adds secret door clue to the room
+     * @param doorClue door clue to be added
+     */
+    public void addSecretDoorClue(Clue doorClue){
+        doorClue.setTilePosition(exitToSecretRoom.getTilePosition().x, exitToSecretRoom.getTilePosition().y);
+
+        clueArray.add(doorClue);
+    }
+
+    /**
+     * adds door to the secret room so the player can access
+     */
+    public void addSecretDoor(){
         MapLayer layer = mapFile.getLayers().get("SecretDoor");
 
         for (MapObject object : layer.getObjects()) {
@@ -289,6 +301,10 @@ public class Room
             }
         }
     }
+
+    /*
+    EXTENDED CODE END
+     */
 
     public Array<Vector2Int> getHidingSpots() {
         return hidingSpots;

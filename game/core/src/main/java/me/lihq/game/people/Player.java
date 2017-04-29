@@ -25,6 +25,7 @@ public class Player extends AbstractPerson {
      * inventory - This object stores the clues and hints the player has collected and the npc's they have spoken to.
      * personalityLevel - The personality will be a percent score (0-100) 0 being angry, 50 being neutral, and 100 being happy/nice.
      * interactionCollisionBox - a collision box used to calculate whether or not an interaction should occur.
+     * stamina - stamina implemented for two player turn base mode
      */
 
     private GameWorld gameWorld;
@@ -37,6 +38,9 @@ public class Player extends AbstractPerson {
 
     private Rectangle interactionCollisionBox;
 
+    /**
+     * NEW FIELD
+     */
     private Stamina stamina;
 
     /**
@@ -104,6 +108,11 @@ public class Player extends AbstractPerson {
         // if it is a clue, add the clue to the inventory
         else if(interactingActor instanceof Clue) {
             Clue foundClue = (Clue) interactingActor;
+
+            /*
+            EXTENDED CODE START
+             */
+
             //when the clue is visible and the player has enough stamina
             if (foundClue.isVisible() && stamina.action()){
                 //when player finds the secret door clue
@@ -121,9 +130,19 @@ public class Player extends AbstractPerson {
                     setMoveSpeed(getMoveSpeed() * 1.2f); // move speed increase by 20%
                 }
 
+                /*
+                EXTENDED CODE END
+                 */
+
                 else {
                     foundClue.setVisible(false);
                     inventory.addClue(foundClue);
+
+                    //When there are more than 5 clues the motive clue becomes visible
+                    if (inventory.getCollectedClues().size == 6){
+                        gameWorld.clueManager.getMotiveClue().setVisible(true);
+                    }
+
                     gameWorld.getScore().addPoints(100);
 
                     gameWorld.getGui().displayInfo(foundClue.getDescription());

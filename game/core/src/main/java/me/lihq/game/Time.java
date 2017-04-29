@@ -3,13 +3,13 @@ package me.lihq.game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
- * EXTENDED
+ * EXTENDED, no longer a singleton
  * Actor that keeps track of game play totalTime. It should pause while in pause screen.
  */
 
 public class Time extends Actor {
     private float totalTime;
-    private boolean paused = false;
+    private boolean isPaused = false;
 
     public Time() {
         this.totalTime = 0;
@@ -18,7 +18,7 @@ public class Time extends Actor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(!paused){
+        if(!isPaused){
             this.totalTime += delta;
         }
     }
@@ -28,11 +28,11 @@ public class Time extends Actor {
     }
 
     public void setPaused(boolean pause){
-        this.paused = pause;
+        this.isPaused = pause;
     }
 
     public void reset(){
         totalTime = 0;
-        paused = false;
+        isPaused = false;
     }
 }

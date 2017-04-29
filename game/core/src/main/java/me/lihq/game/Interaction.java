@@ -122,7 +122,6 @@ public class Interaction {
             gameWorld.getConversationManager().nextSpeechBubble();
         }
         else{
-            score.failedAccusation();
             score.subPoints(200);      // Failed accusation
             interactingNpc.setFalseAccused(true);
 

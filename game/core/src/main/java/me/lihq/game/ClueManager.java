@@ -15,8 +15,6 @@ import me.lihq.game.models.Vector2Int;
  * Clue manager handles creating and assigning clues to rooms
  */
 public class ClueManager {
-    public static ClueManager instance;
-
     /**
      * Parameters needed for ClueManager:
      *
@@ -25,6 +23,10 @@ public class ClueManager {
     private Array<Clue> relevantNormalClueArray;
     private Clue weaponClue;
     private Clue motiveClue;
+
+    /**
+     * NEW FIELDS
+     */
     private Clue secretDoorClue;
     private Clue secretItemClue;
 
@@ -57,6 +59,10 @@ public class ClueManager {
                 motiveClue = clue;
             }
 
+            /*
+            EXTENDED CODE START
+             */
+
             else if (clue.getClueType() == ClueType.SECRET){
                 secretDoorClue = clue;
             }
@@ -64,6 +70,10 @@ public class ClueManager {
             else if (clue.getClueType() == ClueType.ITEM){
                 secretItemClue = clue;
             }
+
+            /*
+            EXTENDED CODE END
+             */
         }
 
         //assign murder weapon to the murderer
@@ -107,6 +117,10 @@ public class ClueManager {
 
         roomManager.getMurderRoom().addClue(motiveClue);
 
+        /*
+        EXTENDED CODE START
+         */
+
         //add secret room entrance clue
         roomManager.getRoomWithSecretDoor().addSecretDoorClue(secretDoorClue);
 
@@ -114,7 +128,9 @@ public class ClueManager {
         secretItemClue.setTilePosition(roomManager.getSecretRoom().getHidingSpots().random());
         roomManager.getSecretRoom().addClue(secretItemClue);
 
-        instance = this;
+        /*
+        EXTENDED CODE END
+         */
     }
 
     public Array<Clue> getRelevantNormalClueArray() {

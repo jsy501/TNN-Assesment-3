@@ -3,7 +3,6 @@ package me.lihq.game;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.Array;
 
-import me.lihq.game.models.Door;
 import me.lihq.game.models.Room;
 
 /**
@@ -14,8 +13,12 @@ public class RoomManager
 {
     private Array<Room> roomArray;
     private Room murderRoom;
-    private Room secretRoom;
+
+    /**
+     * NEW FIELDS
+     */
     private Room roomWithSecretDoor;
+    private Room secretRoom;
 
     /**
      * Constructs the map
@@ -40,10 +43,15 @@ public class RoomManager
         murderRoom = roomArray.random();
         murderRoom.setMurderRoom(true);
 
+        /*
+        EXTENDED CODE START
+         */
+
         //secret room init
         secretRoom = new Room(assetLoader.secretRoom, assetLoader.arrowAtlas);
         Array<Room> roomsWithSecretDoor = new Array<>();
         for (Room room : roomArray){
+            //every tiled map has a new boolean property, true if there is a spot for secret door
             if (room.getTiledMap().getProperties().get("hasSecretDoor").equals(true)){
                 roomsWithSecretDoor.add(room);
             }
@@ -55,7 +63,11 @@ public class RoomManager
         secretRoom.getExitArray().get(0).setConnectedRoomId(roomWithSecretDoor.getID());
         secretRoom.setLocked(true);
 
-        roomWithSecretDoor.addSecretRoomDoor();
+        roomWithSecretDoor.addSecretDoor();
+
+        /*
+        EXTENDED CODE END
+         */
     }
 
     /**

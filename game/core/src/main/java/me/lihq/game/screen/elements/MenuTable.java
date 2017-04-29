@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Scaling;
 import me.lihq.game.GameMain;
 
 /**
+ * EXTENDED
  * Abstract class for menu template for the screens.
  */
 
@@ -42,6 +43,10 @@ public abstract class MenuTable extends Table {
         add(buttonTable).padBottom(100);
     }
 
+    /*
+    EXTENDED CODE START
+     */
+
     public MenuTable(Skin skin, Texture texture) {
         menuSkin = skin;
 
@@ -60,6 +65,10 @@ public abstract class MenuTable extends Table {
         add(contentTable).row();
         add(buttonTable).expand(true, true);
     }
+
+    /*
+    EXTENDED CODE END
+     */
 
 
     public void addButton(Button button){

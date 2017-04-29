@@ -59,11 +59,4 @@ public class ScoreUnitTest extends GameTester {
         testScore.addPoints(100);
         assertEquals(97, testScore.getFinalScore(10));
     }
-
-    @Test
-    public void getFailedAccusationCount() throws Exception {
-        testScore.failedAccusation();
-
-        assertEquals(1, testScore.getFailedAccusationCount());
-    }
 }

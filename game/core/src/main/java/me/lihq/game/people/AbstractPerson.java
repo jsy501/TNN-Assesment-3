@@ -53,7 +53,7 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
 
     private float moveSpeed = 150f;
 
-    protected Vector2Int tilePosition = new Vector2Int(0, 0);
+    private Vector2Int tilePosition = new Vector2Int(0, 0);
 
     private float animStateTime = 0;
 
@@ -62,10 +62,10 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
     public Animation<TextureRegion> walkRight;
     public Animation<TextureRegion> walkLeft;
 
-    protected Rectangle collisionBox;
+    Rectangle collisionBox;
 
-    protected float vectorDistanceX;
-    protected float vectorDistanceY;
+    float vectorDistanceX;
+    float vectorDistanceY;
 
     protected Direction direction = Direction.SOUTH;
 

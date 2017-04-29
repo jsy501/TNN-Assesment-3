@@ -5,7 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
- * EXTENDED
+ * EXTENDED, no longer a singleton
  * Score class is a class used to keep track of the players score
  */
 public class Score extends Actor{
@@ -23,15 +23,12 @@ public class Score extends Actor{
     private int currentScore;
     private int targetScore;
 
-    private int failedAccusationCount;
-
     /**
      * Score constructor
      */
     public Score() {
         highScore = Gdx.app.getPreferences("pref").getInteger("highScore", 0);
         currentScore = 0;
-        failedAccusationCount = 0;
     }
 
 
@@ -60,25 +57,12 @@ public class Score extends Actor{
 
     public int getTargetScore() { return targetScore;}
 
-    public int getFailedAccusationCount() {
-        return failedAccusationCount;
-    }
-
     /**
      * This method is called if the player wishes to restart the game to reset the score.
      */
 
      public void reset() {
         currentScore = 0;
-      failedAccusationCount = 0;
-    }
-
-    /**
-     * This method is called when the player falsely accuses an Npc to increase the failed accusation count.
-     */
-
-    public void failedAccusation(){
-        failedAccusationCount++;
     }
 
     /**
