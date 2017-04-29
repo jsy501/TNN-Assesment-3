@@ -82,4 +82,19 @@ public class StaminaUnitTest {
         assertEquals(10, testStamina.getCurrentStamina(),1);
     }
 
+    @Test
+    public void setCurrentStamina() throws Exception {
+        testStamina.setCurrentStamina(50);
+        assertEquals(50, testStamina.getCurrentStamina(),1);
+        testStamina.setCurrentStamina(90);
+        assertEquals(90, testStamina.getCurrentStamina(),1);
+
+    }
+
+    @Test
+    public void checkEnabled() throws Exception {
+        assertFalse(testStamina.checkEnabled());
+        testStamina.enable();
+        assertTrue(testStamina.checkEnabled());
+    }
 }
