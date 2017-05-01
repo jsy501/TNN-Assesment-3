@@ -286,7 +286,7 @@ public class Room
     }
 
     /**
-     * adds door to the secret room so the player can access
+     * adds door to the secret room
      */
     public void addSecretDoor(){
         MapLayer layer = mapFile.getLayers().get("SecretDoor");

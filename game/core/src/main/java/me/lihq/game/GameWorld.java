@@ -88,6 +88,7 @@ public class GameWorld {
         cameraManager = new CameraManager((OrthographicCamera) gameWorldStage.getCamera(), player);
 
         characterGroup = new Group();
+        characterGroup.setName("characterGroup");
         clueGroup = new Group();
         roomArrowGroup = new Group();
 

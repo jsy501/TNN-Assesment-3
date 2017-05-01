@@ -52,7 +52,7 @@ public class TwoPlayerGameScreen extends GameScreen{
         currentController = playerOneController;
     }
 
-    public void switchPlayer(){
+    private void switchPlayer(){
         currentGameWorld.getPlayer().getStamina().reset();
         currentGameWorld.getTime().setPaused(true);
 
