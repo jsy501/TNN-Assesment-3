@@ -15,10 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ArrayMap;
-import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.*;
 
 import static com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 
@@ -136,11 +133,12 @@ public class AssetLoader {
         manager.load(ASSET_FOLDER + "puzzle/6.png", Texture.class);
         manager.load(ASSET_FOLDER + "puzzle/qm.png", Texture.class);
 
+
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         manager.load(ASSET_FOLDER + "maps/computerRoom.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/island.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/kitchen.tmx",TiledMap.class);
-        manager.load(ASSET_FOLDER + "maps/lakehouse.tmx",TiledMap.class);
+        manager.load(ASSET_FOLDER + "maps/lakeHouse.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/mainRoom.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/outside.tmx",TiledMap.class);
         manager.load(ASSET_FOLDER + "maps/pod.tmx",TiledMap.class);
@@ -164,9 +162,9 @@ public class AssetLoader {
         roomTagFont = generator.generateFont(parameter);
         generator.dispose();
 
-        playerJsonData = new JsonReader().parse(new FileHandle(ASSET_FOLDER + "player.json"));
-        npcJsonData = new JsonReader().parse(new FileHandle(ASSET_FOLDER + "npc.json"));
-        clueJsonData = new JsonReader().parse(new FileHandle(ASSET_FOLDER + "clue.json"));
+        playerJsonData = new JsonReader().parse(Gdx.files.internal(ASSET_FOLDER + "player.json"));
+        npcJsonData = new JsonReader().parse(Gdx.files.internal(ASSET_FOLDER + "npc.json"));
+        clueJsonData = new JsonReader().parse(Gdx.files.internal(ASSET_FOLDER + "clue.json"));
 
         // sprite sheet assign
         playerSpriteSheetArray.put(1,manager.get(ASSET_FOLDER + "people/player/alfred.pack"));
@@ -201,7 +199,7 @@ public class AssetLoader {
         mapArray.add(manager.get(ASSET_FOLDER + "maps/computerRoom.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/island.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/kitchen.tmx"));
-        mapArray.add(manager.get(ASSET_FOLDER + "maps/lakehouse.tmx"));
+        mapArray.add(manager.get(ASSET_FOLDER + "maps/lakeHouse.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/mainRoom.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/outside.tmx"));
         mapArray.add(manager.get(ASSET_FOLDER + "maps/pod.tmx"));
@@ -262,7 +260,7 @@ public class AssetLoader {
      */
     public BitmapFont getFontWithSize(int size)
     {
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(new FileHandle(ASSET_FOLDER + "fonts/VT323-Regular.ttf"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(ASSET_FOLDER + "fonts/VT323-Regular.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = size;
         BitmapFont font = generator.generateFont(parameter);
