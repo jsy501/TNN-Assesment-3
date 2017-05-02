@@ -9,6 +9,8 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.people.controller.PlayerController;
 
+import java.util.stream.IntStream;
+
 /**
  * NEW
  * Superclass for two game screens; single and two player mode
@@ -31,6 +33,12 @@ public abstract class GameScreen extends AbstractScreen{
         Gdx.input.setInputProcessor(multiplexer);
 
         currentGameWorld.getTime().setPaused(false);
+        if (game.assetLoader.menuMusic.isPlaying()) {
+            IntStream.range(0, 1000000).forEachOrdered(n -> {
+                game.assetLoader.menuMusic.setVolume(n/1000000);
+            });
+        }
+        game.assetLoader.menuMusic.stop();
     }
 
     /**

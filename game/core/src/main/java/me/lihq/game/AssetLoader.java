@@ -3,6 +3,8 @@ package me.lihq.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -68,6 +70,15 @@ public class AssetLoader {
 
     public Array<Texture> cardTextureArray;
 
+    public Music menuMusic;
+    public Sound door;
+    public Sound endingTune;
+    public Sound footstep;
+    public Sound menuClick;
+    public Sound menuMouseOver;
+    public Sound roomTone;
+    public Sound waterDrop;
+
     /**
      * Constructor to build AssetLoader object
      */
@@ -96,6 +107,34 @@ public class AssetLoader {
         teamNoNameSplash = manager.get(ASSET_FOLDER + "teamNoNameSplash.png");
     }
 
+    /**
+     * loads assets into manager for SFX
+     */
+    public void loadSoundAssets(){
+        manager.load(ASSET_FOLDER + "music/menu.ogg", Music.class);
+        manager.load(ASSET_FOLDER + "sounds/door.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/endingTune.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/footstep.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/menuClick.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/menuMouseOver.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/roomTone.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/waterDrop.ogg", Sound.class);
+        manager.finishLoading();
+    }
+
+    /**
+     * retrieves assets from manager for SFX
+     */
+    public void assignSoundAssets(){
+        menuMusic = manager.get(ASSET_FOLDER + "music/menu.ogg");
+        door = manager.get(ASSET_FOLDER + "sounds/door.ogg");
+        endingTune = manager.get(ASSET_FOLDER + "sounds/endingTune.ogg");
+        footstep = manager.get(ASSET_FOLDER + "sounds/footstep.ogg");
+        menuClick = manager.get(ASSET_FOLDER + "sounds/menuClick.ogg");
+        menuMouseOver = manager.get(ASSET_FOLDER + "sounds/menuMouseOver.ogg");
+        roomTone = manager.get(ASSET_FOLDER + "sounds/roomTone.ogg");
+        waterDrop = manager.get(ASSET_FOLDER + "sounds/waterDrop.ogg");
+    }
     /**
      * loads in game assets into manager
      */

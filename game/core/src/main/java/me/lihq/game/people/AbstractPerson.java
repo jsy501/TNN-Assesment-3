@@ -1,5 +1,6 @@
 package me.lihq.game.people;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -11,9 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
-import me.lihq.game.Collidable;
-import me.lihq.game.Settings;
-import me.lihq.game.TileObject;
+import me.lihq.game.*;
 import me.lihq.game.models.Room;
 import me.lihq.game.models.Vector2Int;
 
@@ -171,6 +170,9 @@ public abstract class AbstractPerson extends Actor implements Collidable, TileOb
             vectorDistanceX = direction.getDx() * moveSpeed * delta;
             vectorDistanceY = direction.getDy() * moveSpeed * delta;
             collisionBox.setPosition(collisionBox.x + vectorDistanceX, collisionBox.y + vectorDistanceY);
+            if (vectorDistanceX != 0 && vectorDistanceY != 0) {
+
+            }
 
             // if there is any collision the distance it will move that frame will be 0
             if (wallCollisionDetection(collisionBox) || characterCollisionDetection(collisionBox)) {

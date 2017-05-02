@@ -47,6 +47,10 @@ public class SplashScreen extends AbstractScreen{
         game.assetLoader.loadSplashAssets();
         game.assetLoader.getManager().finishLoading();
         game.assetLoader.assignSplashAssets();
+        game.assetLoader.loadSoundAssets();
+        game.assetLoader.assignSoundAssets();
+        game.assetLoader.menuMusic.setLooping(true);
+        game.assetLoader.menuMusic.play();
 
         loremIpsomSplashAnimation = new Animation<>(0.5f, game.assetLoader.loremIpsomSplash.getRegions());
         loremIpsomImage = new Actor(){
