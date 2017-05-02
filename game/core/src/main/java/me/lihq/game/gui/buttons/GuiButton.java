@@ -11,6 +11,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
+ * EXTENDED
  * Basic gui button that interacts with corresponding windows
  */
 
@@ -29,11 +30,18 @@ abstract class GuiButton extends TextButton {
         this.gui = gui;
         this.gameWorld = gui.getGameWorld();
 
+        /*
+        EXTENDED CODE START
+         */
         addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 gameWorld.game.assetLoader.menuClick.play();
             }
         });
+
+        /*
+        EXTENDED CODE END
+         */
     }
 }

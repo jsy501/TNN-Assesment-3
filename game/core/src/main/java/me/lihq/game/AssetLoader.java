@@ -118,7 +118,6 @@ public class AssetLoader {
         manager.load(ASSET_FOLDER + "sounds/footstep.ogg", Sound.class);
         manager.load(ASSET_FOLDER + "sounds/menuClick.ogg", Sound.class);
         manager.load(ASSET_FOLDER + "music/roomTone.ogg", Music.class);
-        manager.load(ASSET_FOLDER + "sounds/waterDrop.ogg", Sound.class);
     }
 
     /**
@@ -130,7 +129,6 @@ public class AssetLoader {
         footstep = manager.get(ASSET_FOLDER + "sounds/footstep.ogg");
         menuClick = manager.get(ASSET_FOLDER + "sounds/menuClick.ogg");
         roomTone = manager.get(ASSET_FOLDER + "music/roomTone.ogg");
-        waterDrop = manager.get(ASSET_FOLDER + "sounds/waterDrop.ogg");
     }
     /**
      * loads in game assets into manager

@@ -147,6 +147,10 @@ public class Gui {
         infoWindow.show(guiStage);
     }
 
+    /*
+    EXTENDED CODE START
+     */
+
     /**
      * Show a pop up prompt window for mini puzzle opening secret door
      */
@@ -158,6 +162,10 @@ public class Gui {
         promptWindow.getContentTable().add(infoLabel).width(500);
         promptWindow.show(guiStage);
     }
+
+    /*
+    EXTENDED CODE END
+     */
 
     public void render(float delta){
         guiStage.act(delta);

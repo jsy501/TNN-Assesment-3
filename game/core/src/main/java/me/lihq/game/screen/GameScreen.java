@@ -64,6 +64,7 @@ public abstract class GameScreen extends AbstractScreen{
             game.setScreen(new GameClearScreen(game, currentGameWorld));
         }
 
+        // when the player is walking, plays footstep sound for every 0.2 seconds to be in sync with walking
         if (currentGameWorld.getPlayer().getState() == PersonState.WALKING){
             if (footStepSoundInterval > 0.2f){
                 game.assetLoader.footstep.play(0.3f);
