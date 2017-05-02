@@ -1,6 +1,7 @@
 package me.lihq.game.gui.windows;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.puzzle.PuzzleStartScreen;
@@ -11,8 +12,8 @@ import me.lihq.game.puzzle.PuzzleStartScreen;
  */
 
 public class PromptWindow extends GuiWindow{
-    public PromptWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("", skin, gui, gameWorld);
+    public PromptWindow(AssetLoader assetLoader, Gui gui, GameWorld gameWorld) {
+        super("", assetLoader, gui, gameWorld);
 
         button("Yes", true);
         button("No", false);

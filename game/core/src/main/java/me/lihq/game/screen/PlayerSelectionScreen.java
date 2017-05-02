@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
@@ -63,6 +64,14 @@ public abstract class PlayerSelectionScreen extends AbstractScreen {
 
     @Override
     public void show() {
+        // click sound added
+        selectionConfirmWindow.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.assetLoader.menuClick.play();
+            }
+        });
+
         for (Player player : playerArray) {
             Slot playerSlot = new Slot(player, game.assetLoader.uiSkin);
             playerSlot.addListener(new InputListener(){
@@ -83,6 +92,8 @@ public abstract class PlayerSelectionScreen extends AbstractScreen {
 
                 @Override
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    assetLoader.menuClick.play();
+
                     selectedPlayerSlot = playerSlot;
 
                     selectionConfirmWindow.getContentTable().clear();

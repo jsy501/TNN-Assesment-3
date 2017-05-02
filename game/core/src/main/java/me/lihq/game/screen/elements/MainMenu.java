@@ -49,6 +49,7 @@ public class MainMenu extends MenuTable
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
+                game.assetLoader.menuClick.play();
                 game.playerSelectionScreen = new SinglePlayerSelectionScreen(game);
                 game.setScreen(game.playerSelectionScreen);
             }
@@ -57,6 +58,7 @@ public class MainMenu extends MenuTable
         twoPlayerButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                game.assetLoader.menuClick.play();
                 game.playerSelectionScreen = new TwoPlayerSelectionScreen(game);
                 game.setScreen(game.playerSelectionScreen);
             }
@@ -68,6 +70,7 @@ public class MainMenu extends MenuTable
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
+                game.assetLoader.menuClick.play();
                 Gdx.app.exit();
             }
         });

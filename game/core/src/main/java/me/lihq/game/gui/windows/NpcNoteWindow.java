@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
@@ -21,7 +22,7 @@ import me.lihq.game.people.Npc;
 
 public class NpcNoteWindow extends SlotWindow{
 
-    public NpcNoteWindow(Skin skin, Gui gui, GameWorld gameWorld) {
+    public NpcNoteWindow(AssetLoader skin, Gui gui, GameWorld gameWorld) {
         super("", skin, gui, gameWorld);
 
         button("OK", true);

@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
@@ -19,8 +20,8 @@ import me.lihq.game.models.Inventory;
  */
 
 public class InventoryWindow extends SlotWindow {
-    public InventoryWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("", skin, gui, gameWorld);
+    public InventoryWindow(AssetLoader assetLoader, Gui gui, GameWorld gameWorld) {
+        super("", assetLoader, gui, gameWorld);
 
         button("OK", true);
     }

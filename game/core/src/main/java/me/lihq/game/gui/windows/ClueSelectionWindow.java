@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.speechbubbles.QuestionStyleSelectionBubble;
@@ -19,8 +20,8 @@ import me.lihq.game.models.Inventory;
  */
 
 public class ClueSelectionWindow extends SlotWindow {
-    public ClueSelectionWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("", skin, gui, gameWorld);
+    public ClueSelectionWindow(AssetLoader assetLoader, Gui gui, GameWorld gameWorld) {
+        super("", assetLoader, gui, gameWorld);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class ClueSelectionWindow extends SlotWindow {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     hide();
-                    QuestionStyleSelectionBubble bubble = new QuestionStyleSelectionBubble(gameWorld, clue, getSkin());
+                    QuestionStyleSelectionBubble bubble = new QuestionStyleSelectionBubble(gameWorld, clue, assetLoader);
                     gameWorld.getConversationManager().addSpeechBubble(bubble);
                     gameWorld.getConversationManager().nextSpeechBubble();
                 }

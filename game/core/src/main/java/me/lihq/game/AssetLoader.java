@@ -3,6 +3,8 @@ package me.lihq.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -68,6 +70,15 @@ public class AssetLoader {
 
     public Array<Texture> cardTextureArray;
 
+    public Music menuMusic;
+    public Sound door;
+    public Music endingTune;
+    public Sound footstep;
+    public Sound menuClick;
+    public Sound menuMouseOver;
+    public Music roomTone;
+    public Sound waterDrop;
+
     /**
      * Constructor to build AssetLoader object
      */
@@ -86,6 +97,7 @@ public class AssetLoader {
     public void loadSplashAssets(){
         manager.load(ASSET_FOLDER + "loremIpsomSplash.pack",TextureAtlas.class);
         manager.load(ASSET_FOLDER + "teamNoNameSplash.png",Texture.class);
+        manager.load(ASSET_FOLDER + "music/menu.ogg", Music.class);
     }
 
     /**
@@ -94,8 +106,30 @@ public class AssetLoader {
     public void assignSplashAssets(){
         loremIpsomSplash = manager.get(ASSET_FOLDER + "loremIpsomSplash.pack");
         teamNoNameSplash = manager.get(ASSET_FOLDER + "teamNoNameSplash.png");
+        menuMusic = manager.get(ASSET_FOLDER + "music/menu.ogg");
     }
 
+    /**
+     * loads assets into manager for SFX
+     */
+    private void loadSoundAssets(){
+        manager.load(ASSET_FOLDER + "sounds/door.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "music/endingTune.ogg", Music.class);
+        manager.load(ASSET_FOLDER + "sounds/footstep.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "sounds/menuClick.ogg", Sound.class);
+        manager.load(ASSET_FOLDER + "music/roomTone.ogg", Music.class);
+    }
+
+    /**
+     * retrieves assets from manager for SFX
+     */
+    private void assignSoundAssets(){
+        door = manager.get(ASSET_FOLDER + "sounds/door.ogg");
+        endingTune = manager.get(ASSET_FOLDER + "music/endingTune.ogg");
+        footstep = manager.get(ASSET_FOLDER + "sounds/footstep.ogg");
+        menuClick = manager.get(ASSET_FOLDER + "sounds/menuClick.ogg");
+        roomTone = manager.get(ASSET_FOLDER + "music/roomTone.ogg");
+    }
     /**
      * loads in game assets into manager
      */
@@ -132,6 +166,8 @@ public class AssetLoader {
         manager.load(ASSET_FOLDER + "puzzle/5.png", Texture.class);
         manager.load(ASSET_FOLDER + "puzzle/6.png", Texture.class);
         manager.load(ASSET_FOLDER + "puzzle/qm.png", Texture.class);
+
+        loadSoundAssets();
 
 
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
@@ -220,6 +256,8 @@ public class AssetLoader {
         clueGlint = manager.get(ASSET_FOLDER + "clueGlint.pack");
 
         uiSkin = manager.get(ASSET_FOLDER + "skin/comic-ui.json");
+
+        assignSoundAssets();
 
         //menu skin init
         initSkin();

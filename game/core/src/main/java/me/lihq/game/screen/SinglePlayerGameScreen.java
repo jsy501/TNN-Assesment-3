@@ -43,16 +43,6 @@ public class SinglePlayerGameScreen extends GameScreen
 
     }
 
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
     /**
      * This is to be called when you want to dispose of all data
      */

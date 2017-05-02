@@ -30,6 +30,9 @@ public class GameClearScreen  extends AbstractScreen{
 
     @Override
     public void show() {
+        game.assetLoader.endingTune.play();
+        game.assetLoader.endingTune.setLooping(true);
+
         stage.addActor(menu);
         Gdx.input.setInputProcessor(stage);
     }
@@ -52,12 +55,12 @@ public class GameClearScreen  extends AbstractScreen{
 
     @Override
     public void resume() {
-
+        game.assetLoader.endingTune.play();
     }
 
     @Override
     public void hide() {
-
+        game.assetLoader.endingTune.stop();
     }
 
     @Override

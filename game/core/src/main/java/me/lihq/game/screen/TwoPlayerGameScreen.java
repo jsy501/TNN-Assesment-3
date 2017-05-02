@@ -99,16 +99,6 @@ public class TwoPlayerGameScreen extends GameScreen{
     }
 
     @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
     public void dispose() {
         gameWorldOne.dispose();
         guiOne.dispose();

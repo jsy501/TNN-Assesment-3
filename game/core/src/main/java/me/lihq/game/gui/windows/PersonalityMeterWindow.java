@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
@@ -18,10 +19,10 @@ import me.lihq.game.gui.Gui;
 public class PersonalityMeterWindow extends GuiWindow {
     private ProgressBar meterBar;
 
-    public PersonalityMeterWindow(Skin skin, Gui gui, GameWorld gameWorld) {
-        super("", skin, gui, gameWorld);
+    public PersonalityMeterWindow(AssetLoader assetLoader, Gui gui, GameWorld gameWorld) {
+        super("", assetLoader, gui, gameWorld);
 
-        meterBar = new ProgressBar(0, 100, 1, false, skin);
+        meterBar = new ProgressBar(0, 100, 1, false, assetLoader.uiSkin);
         getContentTable().add(meterBar).size(GameMain.GAME_WIDTH * 0.5f, 100).colspan(2).row();
         getContentTable().add("Nice").left();
         getContentTable().add("Aggressive").right();

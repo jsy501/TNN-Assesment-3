@@ -35,9 +35,10 @@ public class PlayerDialogue extends Dialogue {
         aggressiveQuestionArray = json.readValue(Array.class, String.class, questionJsonData.get("AGGRESSIVE"));
     }
 
-    /**
-     * Getters for use in other classes
+    /*
+    EXTENDED CODE START
      */
+
     public String getQuestionDialogue(QuestionStyle questionStyle){
         switch (questionStyle){
             case AGGRESSIVE:
@@ -52,4 +53,8 @@ public class PlayerDialogue extends Dialogue {
 
         return null;
     }
+
+    /*
+    EXTENDED CODE END
+     */
 }

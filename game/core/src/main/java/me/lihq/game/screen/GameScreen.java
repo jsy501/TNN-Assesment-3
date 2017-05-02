@@ -7,7 +7,10 @@ import com.badlogic.gdx.InputMultiplexer;
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
+import me.lihq.game.people.PersonState;
 import me.lihq.game.people.controller.PlayerController;
+
+import java.util.stream.IntStream;
 
 /**
  * NEW
@@ -15,6 +18,8 @@ import me.lihq.game.people.controller.PlayerController;
  */
 
 public abstract class GameScreen extends AbstractScreen{
+    private float footStepSoundInterval;
+
     protected PlayerController currentController;
     protected GameWorld currentGameWorld;
     protected Gui currentGui;
@@ -31,6 +36,14 @@ public abstract class GameScreen extends AbstractScreen{
         Gdx.input.setInputProcessor(multiplexer);
 
         currentGameWorld.getTime().setPaused(false);
+        if (game.assetLoader.menuMusic.isPlaying()) {
+            IntStream.range(0, 1000000).forEachOrdered(n -> {
+                game.assetLoader.menuMusic.setVolume(n/1000000);
+            });
+        }
+        game.assetLoader.menuMusic.stop();
+        game.assetLoader.roomTone.play();
+        game.assetLoader.roomTone.setLooping(true);
     }
 
     /**
@@ -51,6 +64,15 @@ public abstract class GameScreen extends AbstractScreen{
             game.setScreen(new GameClearScreen(game, currentGameWorld));
         }
 
+        // when the player is walking, plays footstep sound for every 0.2 seconds to be in sync with walking
+        if (currentGameWorld.getPlayer().getState() == PersonState.WALKING){
+            if (footStepSoundInterval > 0.2f){
+                game.assetLoader.footstep.play(0.3f);
+                footStepSoundInterval = 0;
+            }
+            footStepSoundInterval+=delta;
+        }
+
         currentGameWorld.render(delta);
         currentGui.render(delta);
     }
@@ -66,6 +88,16 @@ public abstract class GameScreen extends AbstractScreen{
     public void resize(int width, int height) {
         currentGameWorld.getGameWorldStage().getViewport().update(width, height);
         currentGui.getGuiStage().getViewport().update(width, height);
+    }
+
+    @Override
+    public void resume() {
+        game.assetLoader.roomTone.play();
+    }
+
+    @Override
+    public void hide() {
+        game.assetLoader.roomTone.stop();
     }
 
     public GameWorld getCurrentGameWorld() {

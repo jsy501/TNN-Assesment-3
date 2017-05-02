@@ -8,31 +8,32 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameMain;
 import me.lihq.game.people.AbstractPerson;
 
 /**
+ * EXTENDED, assetloader is taken as a parameter so the class can use both skin and sound from it
  * Abstract class for Speech bubbles used for conversation between a player and npc.
  */
 
 public abstract class SpeechBubble extends Table {
+    protected AssetLoader assetLoader;
     private AbstractPerson speakingPerson;
 
     Table nameTable;
     Label nameLabel;
     Table contentTable;
 
-    private Skin skin;
-
     /**
      * Constructs a template for speech bubble classes used for interaction
-     * @param skin skin for table construction
+     * @param assetLoader skin for table construction
      * @param speakingPerson person that the speech bubble should be attached to
      */
-    public SpeechBubble(AbstractPerson speakingPerson, Skin skin){
-        super(skin);
+    public SpeechBubble(AbstractPerson speakingPerson, AssetLoader assetLoader){
+        super(assetLoader.uiSkin);
 
-        this.skin = skin;
+        this.assetLoader = assetLoader;
         this.speakingPerson = speakingPerson;
 
         setTransform(true);
@@ -40,7 +41,7 @@ public abstract class SpeechBubble extends Table {
 
         nameTable = new Table();
 
-        contentTable = new Table(skin);
+        contentTable = new Table(getSkin());
         add(contentTable).width(300).padTop(10);
     }
 
@@ -75,13 +76,13 @@ public abstract class SpeechBubble extends Table {
         switch (speakingPerson.getDirection()){
             case EAST:
             case SOUTH:
-                setBackground(skin.getDrawable("bubble-lower-right"));
+                setBackground(getSkin().getDrawable("bubble-lower-right"));
                 setPosition(50, GameMain.GAME_HEIGHT/2, Align.bottomLeft);
                 break;
 
             case WEST:
             case NORTH:
-                setBackground(skin.getDrawable("bubble-lower-left"));
+                setBackground(getSkin().getDrawable("bubble-lower-left"));
                 setPosition(GameMain.GAME_WIDTH - 50, GameMain.GAME_HEIGHT/2, Align.bottomRight);
                 break;
 
