@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import me.lihq.game.GameMain;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
+import me.lihq.game.people.PersonState;
 import me.lihq.game.people.controller.PlayerController;
 
 import java.util.stream.IntStream;
@@ -17,6 +18,8 @@ import java.util.stream.IntStream;
  */
 
 public abstract class GameScreen extends AbstractScreen{
+    private float footStepSoundInterval;
+
     protected PlayerController currentController;
     protected GameWorld currentGameWorld;
     protected Gui currentGui;
@@ -39,6 +42,8 @@ public abstract class GameScreen extends AbstractScreen{
             });
         }
         game.assetLoader.menuMusic.stop();
+        game.assetLoader.roomTone.play();
+        game.assetLoader.roomTone.setLooping(true);
     }
 
     /**
@@ -59,6 +64,14 @@ public abstract class GameScreen extends AbstractScreen{
             game.setScreen(new GameClearScreen(game, currentGameWorld));
         }
 
+        if (currentGameWorld.getPlayer().getState() == PersonState.WALKING){
+            if (footStepSoundInterval > 0.2f){
+                game.assetLoader.footstep.play(0.3f);
+                footStepSoundInterval = 0;
+            }
+            footStepSoundInterval+=delta;
+        }
+
         currentGameWorld.render(delta);
         currentGui.render(delta);
     }
@@ -74,6 +87,16 @@ public abstract class GameScreen extends AbstractScreen{
     public void resize(int width, int height) {
         currentGameWorld.getGameWorldStage().getViewport().update(width, height);
         currentGui.getGuiStage().getViewport().update(width, height);
+    }
+
+    @Override
+    public void resume() {
+        game.assetLoader.roomTone.play();
+    }
+
+    @Override
+    public void hide() {
+        game.assetLoader.roomTone.stop();
     }
 
     public GameWorld getCurrentGameWorld() {

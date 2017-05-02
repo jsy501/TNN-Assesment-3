@@ -47,8 +47,6 @@ public class SplashScreen extends AbstractScreen{
         game.assetLoader.loadSplashAssets();
         game.assetLoader.getManager().finishLoading();
         game.assetLoader.assignSplashAssets();
-        game.assetLoader.loadSoundAssets();
-        game.assetLoader.assignSoundAssets();
         game.assetLoader.menuMusic.setLooping(true);
         game.assetLoader.menuMusic.play();
 

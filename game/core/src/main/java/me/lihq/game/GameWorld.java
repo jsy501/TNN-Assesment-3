@@ -25,7 +25,7 @@ import me.lihq.game.screen.GameClearScreen;
  * EXTENDED
  *
  * A working executable for the game can be found on the website http://nxn173.wixsite.com/teamquestionmark/about
- * under assessment 3. However the website links to google drive which is actually holding the executable jar so here
+ * under assessment 4. However the website links to google drive which is actually holding the executable jar so here
  * is a direct link if you would prefer not to go through the website: https://drive.google.com/file/d/0B-r8DZ_M33g8YmJVSUhSd1VMYzA/view?usp=sharing
  *
  * Container for all of the core game objects in the game
@@ -114,7 +114,7 @@ public class GameWorld {
         gameWorldStage.addActor(characterGroup);
 
         interaction = new Interaction(this);
-        conversationManager = new ConversationManager(game.assetLoader.uiSkin);
+        conversationManager = new ConversationManager(game.assetLoader);
     }
 
     public void setGui(Gui gui){
@@ -131,6 +131,7 @@ public class GameWorld {
             return;
         }
 
+        game.assetLoader.door.play();
         //prevents colliding with doors multiple times during transition
         player.setCanMove(false);
 
@@ -201,7 +202,7 @@ public class GameWorld {
         interactingNpc.setDirection(player.getDirection().getOpposite());
         conversationManager.addSpeechBubble(player, player.getDialogue().getIntroduction());
         conversationManager.addSpeechBubble(interactingNpc, interactingNpc.getDialogue().getIntroduction());
-        conversationManager.addSpeechBubble(new InteractionSelectionBubble(player, game.assetLoader.uiSkin, conversationManager, gui));
+        conversationManager.addSpeechBubble(new InteractionSelectionBubble(player, game.assetLoader, conversationManager, gui));
         conversationManager.startConversation(gui.getGuiStage());
 
         cameraManager.startInteractionMode(interactingNpc);

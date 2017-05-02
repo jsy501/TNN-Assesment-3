@@ -2,7 +2,9 @@ package me.lihq.game.screen.elements;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 
 import com.badlogic.gdx.utils.Scaling;
@@ -47,6 +49,11 @@ public abstract class MenuTable extends Table {
     EXTENDED CODE START
      */
 
+    /**
+     * constructor for title screen that displays an image
+     * @param skin skin to be used for menu
+     * @param texture image to be displayed
+     */
     public MenuTable(Skin skin, Texture texture) {
         menuSkin = skin;
 

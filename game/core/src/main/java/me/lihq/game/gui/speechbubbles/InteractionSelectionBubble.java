@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.ConversationManager;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.people.Npc;
@@ -15,10 +16,10 @@ import me.lihq.game.people.Player;
  */
 public class InteractionSelectionBubble extends SpeechBubble{
 
-    public InteractionSelectionBubble(Player player, Skin skin, ConversationManager conversationManager, Gui gui) {
-        super(player, skin);
+    public InteractionSelectionBubble(Player player, AssetLoader assetLoader, ConversationManager conversationManager, Gui gui) {
+        super(player, assetLoader);
 
-        TextButton questionButton = new TextButton("Question", skin, "buttonBubble");
+        TextButton questionButton = new TextButton("Question", getSkin(), "buttonBubble");
         questionButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -34,7 +35,7 @@ public class InteractionSelectionBubble extends SpeechBubble{
 
                     //load fail response speech to conversation manager
                     SpeechBubble speechBubble = new ConversationSpeechBubble(interactingCharacter,
-                            interactingCharacter.getDialogue().getFailResponseArray().random(), skin);
+                            interactingCharacter.getDialogue().getFailResponseArray().random(), assetLoader);
                     conversationManager.addSpeechBubble(speechBubble);
                     conversationManager.nextSpeechBubble();
                 }
@@ -49,7 +50,7 @@ public class InteractionSelectionBubble extends SpeechBubble{
         });
         addButton(questionButton);
 
-        TextButton accuseButton = new TextButton("Accuse", skin, "buttonBubble");
+        TextButton accuseButton = new TextButton("Accuse", getSkin(), "buttonBubble");
         accuseButton.addListener(new ChangeListener() {
             /*
             checks to see if the player has collected 6 clues or more and that 1 of those clues is the weapon clue and 1 is the motive clue
@@ -97,7 +98,7 @@ public class InteractionSelectionBubble extends SpeechBubble{
         addButton(accuseButton);
 
         //simply terminate conversation when ignore button is pressed
-        TextButton ignoreButton = new TextButton("Ignore", skin, "buttonBubble");
+        TextButton ignoreButton = new TextButton("Ignore", getSkin(), "buttonBubble");
         ignoreButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -110,6 +111,21 @@ public class InteractionSelectionBubble extends SpeechBubble{
     }
 
     private void addButton(TextButton button){
+
+        /*
+        EXTENDED CODE START
+         */
+        button.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                assetLoader.menuClick.play();
+            }
+        });
+
+        /*
+        EXTENDED CODE END
+         */
+
         getContentTable().add(button).row();
     }
 }

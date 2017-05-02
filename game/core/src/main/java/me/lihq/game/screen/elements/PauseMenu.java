@@ -42,6 +42,7 @@ public class PauseMenu extends MenuTable{
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
+                game.assetLoader.menuClick.play();
                 game.setScreen(gameScreen);
             }
         });
@@ -50,6 +51,7 @@ public class PauseMenu extends MenuTable{
         mainMenu.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                game.assetLoader.menuClick.play();
                 game.setScreen(game.mainMenuScreen);
             }
         });
@@ -60,6 +62,7 @@ public class PauseMenu extends MenuTable{
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
+                game.assetLoader.menuClick.play();
                 Gdx.app.exit();
             }
         });

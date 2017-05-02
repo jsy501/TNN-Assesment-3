@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
@@ -18,15 +19,15 @@ import me.lihq.game.gui.Slot;
 abstract class SlotWindow extends GuiWindow {
     private SlotWindowStyle style;
 
-    SlotWindow(String title, Skin skin, Gui gui, GameWorld gameWorld, SlotWindowStyle style) {
-        super(title, skin, gui, gameWorld);
+    SlotWindow(String title, AssetLoader assetLoader, Gui gui, GameWorld gameWorld, SlotWindowStyle style) {
+        super(title, assetLoader, gui, gameWorld);
         this.style = style;
 
         setUpSlotArray();
     }
 
-    SlotWindow(String title, Skin skin, Gui gui, GameWorld gameWorld) {
-        super(title, skin, gui, gameWorld);
+    SlotWindow(String title, AssetLoader assetLoader, Gui gui, GameWorld gameWorld) {
+        super(title, assetLoader, gui, gameWorld);
 
         style = new SlotWindowStyle();
         setUpSlotArray();

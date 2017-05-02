@@ -1,6 +1,7 @@
 package me.lihq.game.gui.buttons;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -10,7 +11,7 @@ import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 
 /**
- * Basic guiOne button that interacts with corresponding windows
+ * Basic gui button that interacts with corresponding windows
  */
 
 abstract class GuiButton extends TextButton {
@@ -27,5 +28,12 @@ abstract class GuiButton extends TextButton {
         super(text, skin, styleName);
         this.gui = gui;
         this.gameWorld = gui.getGameWorld();
+
+        addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                gameWorld.game.assetLoader.menuClick.play();
+            }
+        });
     }
 }

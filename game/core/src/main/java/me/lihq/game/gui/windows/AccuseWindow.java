@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Array;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.gui.Gui;
 import me.lihq.game.gui.Slot;
@@ -20,7 +21,7 @@ import me.lihq.game.models.Inventory;
 public class AccuseWindow extends SlotWindow{
     private Array<Clue> cluesToBePresented;
 
-    public AccuseWindow(Skin skin, Gui gui, GameWorld gameWorld) {
+    public AccuseWindow(AssetLoader skin, Gui gui, GameWorld gameWorld) {
         super("", skin, gui, gameWorld);
 
         button("OK", true);

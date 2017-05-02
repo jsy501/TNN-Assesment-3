@@ -13,7 +13,7 @@ import me.lihq.game.Score;
 import me.lihq.game.screen.SinglePlayerSelectionScreen;
 
 /**
- * EXTENDED
+ * EXTENDED, main menu button added
  * Table that contains contents for game clear screen
  */
 
@@ -53,6 +53,7 @@ public class GameClearMenu extends MenuTable{
         mainMenu.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                game.assetLoader.menuClick.play();
                 game.setScreen(game.mainMenuScreen);
             }
         });
@@ -60,6 +61,7 @@ public class GameClearMenu extends MenuTable{
         quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                game.assetLoader.menuClick.play();
                 Gdx.app.exit();
             }
         });

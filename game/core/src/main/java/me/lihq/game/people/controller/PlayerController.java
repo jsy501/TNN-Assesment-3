@@ -80,6 +80,7 @@ public class PlayerController extends InputAdapter
         else if (!gameWorld.getConversationManager().isFinished()){
             if (keycode == Input.Keys.SPACE
                     && gameWorld.getConversationManager().getCurrentConversation() instanceof ConversationSpeechBubble){
+                gameWorld.game.assetLoader.menuClick.play();
                 gameWorld.getConversationManager().nextSpeechBubble();
             }
         }

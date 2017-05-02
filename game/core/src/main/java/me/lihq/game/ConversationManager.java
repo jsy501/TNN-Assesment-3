@@ -17,7 +17,7 @@ import me.lihq.game.people.Npc;
 
 public class ConversationManager{
     private Stage stage;
-    private Skin skin;
+    private AssetLoader assetLoader;
 
     /** the queue that takes either a speech bubble or a runnable action in order.*/
     private Queue<Object> conversationQueue;
@@ -27,8 +27,8 @@ public class ConversationManager{
     private Object currentConversation;
     private boolean isFinished = false;
 
-    ConversationManager(Skin skin){
-        this.skin = skin;
+    ConversationManager(AssetLoader assetLoader){
+        this.assetLoader = assetLoader;
         conversationQueue = new Queue<>();
     }
 
@@ -48,7 +48,7 @@ public class ConversationManager{
     }
 
     public void addSpeechBubble(AbstractPerson speakingPerson, String dialogueLine) {
-        conversationQueue.addLast(new ConversationSpeechBubble(speakingPerson, dialogueLine, skin));
+        conversationQueue.addLast(new ConversationSpeechBubble(speakingPerson, dialogueLine, assetLoader));
 
         if (speakingPerson instanceof Npc) {
             interactingCharacter = (Npc) speakingPerson;

@@ -5,19 +5,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
+import me.lihq.game.AssetLoader;
 import me.lihq.game.GameWorld;
 import me.lihq.game.models.Clue;
 import me.lihq.game.people.QuestionStyle;
 
 /**
+ * EXTENDED
  * specialised speech bubble for displaying questioning style available and take user input.
  */
 
 public class QuestionStyleSelectionBubble extends SpeechBubble{
-    public QuestionStyleSelectionBubble(GameWorld gameWorld, Clue selectedClue, Skin skin) {
-        super(gameWorld.getPlayer(), skin);
+    public QuestionStyleSelectionBubble(GameWorld gameWorld, Clue selectedClue, AssetLoader assetLoader) {
+        super(gameWorld.getPlayer(), assetLoader);
 
-        TextButton aggressiveButton = new TextButton("Aggressive", skin, "buttonBubble");
+        TextButton aggressiveButton = new TextButton("Aggressive", getSkin(), "buttonBubble");
         aggressiveButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -27,7 +29,7 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
             }
         });
 
-        TextButton neutralButton = new TextButton("Neutral", skin, "buttonBubble");
+        TextButton neutralButton = new TextButton("Neutral", getSkin(), "buttonBubble");
         neutralButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -37,7 +39,7 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
             }
         });
 
-        TextButton niceButton = new TextButton("Nice", skin, "buttonBubble");
+        TextButton niceButton = new TextButton("Nice", getSkin(), "buttonBubble");
         niceButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -47,7 +49,7 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
             }
         });
 
-        TextButton cancelButton = new TextButton("Cancel", skin, "buttonBubble");
+        TextButton cancelButton = new TextButton("Cancel", getSkin(), "buttonBubble");
         cancelButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -80,6 +82,20 @@ public class QuestionStyleSelectionBubble extends SpeechBubble{
     }
 
     private void addButton(TextButton textButton){
+        /*
+        EXTENDED CODE START
+         */
+        textButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                assetLoader.menuClick.play();
+            }
+        });
+
+        /*
+        EXTENDED CODE END
+         */
+
         getContentTable().add(textButton).row();
     }
 }

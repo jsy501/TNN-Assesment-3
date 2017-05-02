@@ -85,7 +85,7 @@ public class Gui {
 
 
         //instantiate all of the gui windows altogether
-        infoWindow = new InfoWindow(game.assetLoader.uiSkin, this, gameWorld);
+        infoWindow = new InfoWindow(game.assetLoader, this, gameWorld);
         //pressing space will also close the info window
         infoWindow.addListener(new InputListener(){
             @Override
@@ -97,12 +97,12 @@ public class Gui {
             }
         });
 
-        promptWindow = new PromptWindow(game.assetLoader.uiSkin, this, gameWorld);
-        inventoryWindow = new InventoryWindow(game.assetLoader.uiSkin, this, gameWorld);
-        personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader.uiSkin, this, gameWorld);
-        npcNoteWindow = new NpcNoteWindow(game.assetLoader.uiSkin, this, gameWorld);
-        clueSelectionWindow = new ClueSelectionWindow(game.assetLoader.uiSkin, this, gameWorld);
-        accuseWindow = new AccuseWindow(game.assetLoader.uiSkin, this, gameWorld);
+        promptWindow = new PromptWindow(game.assetLoader, this, gameWorld);
+        inventoryWindow = new InventoryWindow(game.assetLoader, this, gameWorld);
+        personalityMeterWindow = new PersonalityMeterWindow(game.assetLoader, this, gameWorld);
+        npcNoteWindow = new NpcNoteWindow(game.assetLoader, this, gameWorld);
+        clueSelectionWindow = new ClueSelectionWindow(game.assetLoader, this, gameWorld);
+        accuseWindow = new AccuseWindow(game.assetLoader, this, gameWorld);
     }
 
     /**
