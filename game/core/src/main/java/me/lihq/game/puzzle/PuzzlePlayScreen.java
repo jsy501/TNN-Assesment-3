@@ -23,9 +23,9 @@ import me.lihq.game.screen.AbstractScreen;
 
 import java.text.DecimalFormat;
 
-public class PuzzleScreen extends AbstractScreen {
+public class PuzzlePlayScreen extends AbstractScreen {
     /**
-     * Parameters needed for PuzzleScreen:
+     * Parameters needed for PuzzlePlayScreen:
      *
      * stepLabel - show the record of step
      * timeLabel - show the record of time left.
@@ -61,7 +61,7 @@ public class PuzzleScreen extends AbstractScreen {
     private boolean gameStart = false;
 
 
-    public PuzzleScreen(GameMain game) {
+    public PuzzlePlayScreen(GameMain game) {
         /**
          * Initialise the GUI of Puzzle game, and add ClickListener to the card.
          * Game only starts after the player click a card for the first time
