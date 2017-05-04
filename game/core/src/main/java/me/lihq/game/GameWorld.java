@@ -26,7 +26,7 @@ import me.lihq.game.screen.GameClearScreen;
  *
  * A working executable for the game can be found on the website http://nxn173.wixsite.com/teamquestionmark/about
  * under assessment 4. However the website links to google drive which is actually holding the executable jar so here
- * is a direct link if you would prefer not to go through the website: https://drive.google.com/file/d/0B-r8DZ_M33g8RUlVWURETVBrdm8/view?usp=sharing
+ * is a direct link if you would prefer not to go through the website: https://drive.google.com/file/d/0B7zqZWea_dRJWTlrel9kdGdScWM/view?usp=sharing
  *
  * Container for all of the core game objects in the game
  */
