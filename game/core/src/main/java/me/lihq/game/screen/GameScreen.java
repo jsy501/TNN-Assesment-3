@@ -59,6 +59,7 @@ public abstract class GameScreen extends AbstractScreen{
         }
 
         if (currentGameWorld.isGameClear() || Gdx.input.isKeyJustPressed(Input.Keys.T)){
+            currentGameWorld.setGameClear(false);
             game.setScreen(new GameClearScreen(game, currentGameWorld));
         }
 

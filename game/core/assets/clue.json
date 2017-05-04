@@ -50,70 +50,70 @@
 
   {
     "name": "The Bad Business Venture",
-    "description": "Colin i don't think our joint business venture will work out \n  you bring nothing to the table. Im gonna go it alone from now on sorry \n things didnt work out. \n hope i can still come to you for advise from time to time.",
+    "description": "Colin i don't think our joint business venture will work out. \n  You bring nothing to the table. Im gonna go it alone from now on.\nSorry things didn't work out.\nHope I can still come to you for advise from time to time.",
     "relatedNpcId": [1],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Actors Complaint",
-    "description": "Diana i simply cannot take part in you're play anymore. \n You are a slave driver and you have nothing but complaints for me. \n I can't take it anymore and know its only a couple of weeks untill \n the performance but i QUIT!!!",
+    "description": "Diana, I simply cannot take part in your play anymore. \n You are a slave driver and you have nothing but complaints for me.\nI can't take it anymore and I know it's only a couple of weeks until\nthe performance, but i QUIT!!!",
     "relatedNpcId": [2],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The fantasy obsession",
-    "description": "Lilly i don't think what you're asking for is safe \n we simply can't go through with it larping with foam swords is one thing but using real weapons?!? \n That's the same as trying to kill someone for real its just not right. \n I'm sorry but i'm out",
+    "description": "Lilly, I don't think what you're asking for is safe.\nWe simply can't go through with it. Larping with foam swords is one thing but using real weapons?!?\nThat's the same as trying to kill someone for real. It's just not right.\nI'm sorry, but I'm out",
     "relatedNpcId": [3],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Old English Rose",
-    "description": "Marry i managed to do what you asked i sneaked in a weapon and hid it you know where. \n I'm not sure we should go through with this though, i mean sure a pretend \n murder mystery sounds fun but someone could really get hurt.",
+    "description": "Marry, I managed to do what you asked i sneaked in a weapon and hid it you know where. \n I'm not sure we should go through with this though, i mean sure a pretend \n murder mystery sounds fun but someone could really get hurt.",
     "relatedNpcId": [4],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The scientists art",
-    "description": "Mike i don't mind helping out with you experiment i just need to know what it is first \n and do i really need to make sure i havent eaten. \n This wont be dangerous will it?",
+    "description": "Mike, I don't mind helping out with you experiment, but I just need to know what it is first\nand why do I need to make sure I haven't eaten?\nThis won't be dangerous will it?",
     "relatedNpcId": [5],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Murdering Archaeologist",
-    "description": "Hey Will i found something amazing right here on campus. \n I am amazed no one else has found it before theirs a cave right under the campus. \n I read up on some old legend's about the area and i think this could really make us rich \n ill tell you where it is at the party see you there. \n Keep this between us though okay!!",
+    "description": "Hey Will, I found something amazing right here on campus.\nI am amazed no one else has found it before. There's a cave right under the campus.\nI read up on some old legend about the area and I think this could really make us rich.\nI'll tell you where it is at the party when I see you there.\nKeep this between us though, okay?",
     "relatedNpcId": [6],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Homicidal Student",
-    "description": "David you are slacking in you're studies again. I will talk to you at the party about it \n However im sorry to say that i will need to submit a form to request that you either \n be expelled for lack of work or retake the year.",
+    "description": "David, you are slacking in you're studies again. I will talk to you at the party about it.\nHowever, I'm sorry to say that I will need to submit a form to request that you will either\nbe expelled for lack of work or retake the year.",
     "relatedNpcId": [7],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Insane Decorator",
-    "description": "Look Julie i changed the party decoration order last minute. Why on earth did you have so many red decorations \n literally all the decorations were red that would have looked terrible. Sorry i hope that this doesn't upset you \n too much i know how you can get a little crazy with these kinds of things. Anyway seeya at the party!",
+    "description": "Look, Julie, I changed the party decoration order last minute. Why on earth did you have so many red decorations?\nLiterally all the decorations were red that would have looked terrible. Sorry, I hope that this doesn't upset you\ntoo much. I know how you can get a little crazy with these kinds of things. Anyway see you at the party!",
     "relatedNpcId": [8],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Pirates Life",
-    "description": "Sophie i know you've worked hard all year but i simply cannot go back on my decision to promote the newbie and not you \n im sorry but he is the managers kid i have no choice. No hard feelings seeya at the party.",
+    "description": "Sophie, I know you've worked hard all year, but I simply cannot go back on my decision to promote the newbie and not you\nI'm sorry, but he is the manager's kid I have no choice. No hard feelings. See you at the party.",
     "relatedNpcId": [9],
     "clueType": "MOTIVE"
   },
 
   {
     "name": "The Red Ink",
-    "description": "Look Tom i know its tough when you have a lot of papers to mark but the university simply doesnt have the time. You've missed too many deadlines on your research and on markings so im sorry but i am gonna have to let you go",
+    "description": "Look, Tom, I know it's tough when you have a lot of papers to mark but the university simply doesn't have the time. You've missed too many deadlines on your research and on markings so I'm sorry, but I have to let you go.",
     "relatedNpcId": [10],
     "clueType": "MOTIVE"
   },
@@ -148,7 +148,7 @@
 
   {
     "name": "Lighter",
-    "description": "A very fancy looking lighter, i wish it was mine.",
+    "description": "A very fancy looking lighter, I wish it was mine.",
     "relatedNpcId": [2,4,1,9],
     "clueType": "NORMAL"
   },
@@ -183,7 +183,7 @@
 
   {
     "name": "Sunglasses",
-    "description": "Sunglasses, i guess someone was trying to look cool.",
+    "description": "Sunglasses, I guess someone was trying to look cool.",
     "relatedNpcId": [1,8,6],
     "clueType": "NORMAL"
   },
@@ -197,7 +197,7 @@
 
   {
     "name": "Comic Book",
-    "description": "A Comic Book. I used to love this series i wonder if i can keep this once this is over, probably not",
+    "description": "A Comic Book. I used to love this series i wonder if I can keep this once this is over, probably not",
     "relatedNpcId": [5,8,10],
     "clueType": "NORMAL"
   },
@@ -218,7 +218,7 @@
 
   {
     "name": "Old mp3 player",
-    "description": "An mp3 player it looks about 10 years old.",
+    "description": "An mp3 player that looks about 10 years old.",
     "relatedNpcId": [2,3,8,9],
     "clueType": "NORMAL"
   },
@@ -267,7 +267,7 @@
 
   {
     "name": "Trainers",
-    "description": "A pair of trainers that looks very comfy",
+    "description": "A pair of trainers that look very comfy",
     "relatedNpcId": [],
     "clueType": "ITEM"
   }
